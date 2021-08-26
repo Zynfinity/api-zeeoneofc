@@ -27,7 +27,6 @@ var { color, bgcolor } = require(__path + '/lib/color.js');
 var { fetchJson } = require(__path + '/lib/fetcher.js')
 var options = require(__path + '/lib/options.js');
 var {
-	Nulis,
 	Vokal,
 	Base,
 	Searchnabi,
