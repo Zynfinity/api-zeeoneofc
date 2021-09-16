@@ -1904,7 +1904,24 @@ router.get('/ptl', async(req, res) => {
         res.status(500).send({status: 500, message: 'Sesuatu yang anda cari tidak ditemukan/error!'});
     });
 })
-
+router.get('/infohoax', async(req, res) => {
+    const apikey = req.query.apikey;
+    if (apikey === undefined) return res.status(404).send({
+        status: 404,
+        message: `Input Parameter apikey`
+    });
+        if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+    skrep.infohoax().then(result => {
+        res.sendFile({
+          creator: 'Fajar Ihsana',
+          result: result
+        })
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({status: 500, message: 'Sesuatu yang anda cari tidak ditemukan/error!'});
+    });
+})
 router.get('/nuliskiri', async(req, res) => {
     const query = req.query.teks;
     const apikey = req.query.apikey;
@@ -1948,9 +1965,9 @@ router.get('/nuliskanan', async(req, res) => {
 const splitText = query.replace(/(\S+\s*){1,9}/g, '$&\n')
 const fixHeight = splitText.split('\n').slice(0, 31).join('\n')
 spawn('convert', [
-    './media/nulis/images/buku/sebelumkiri.jpg',
+    './media/nulis/sebelumkiri.jpg',
     '-font',
-    './media/nulis/font/Indie-Flower.ttf',
+    './media/nulis/Indie-Flower.ttf',
     '-size',
     '960x1280',
     '-pointsize',
@@ -1964,7 +1981,7 @@ spawn('convert', [
 ])
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
-    res.sendFile('/app/media/nulis/setelahkiri.jpg')
+    res.sendFile('/app/media/nulis/setelahkanan.jpg')
 })
 })
 
@@ -1996,7 +2013,7 @@ spawn('convert', [
 ])
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
-    res.sendFile('/app/media/nulis/setelahkiri.jpg')
+    res.sendFile('/app/media/nulis/sfoliokanan.jpg')
 })
 })
 router.get('/foliokiri', async(req, res) => {
@@ -2027,7 +2044,7 @@ spawn('convert', [
 ])
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
-    res.sendFile('/app/media/nulis/setelahkiri.jpg')
+    res.sendFile('/app/media/nulis/sfoliokiri.jpg')
 })
 })
 router.get('/asupan', async(req, res) => {
