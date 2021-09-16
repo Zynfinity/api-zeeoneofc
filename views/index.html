@@ -7,13 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Rest API - Zhirrr</title>
+  <title>Rest API - Dexi</title>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="css/ruang-admin.min.css" rel="stylesheet">
   <script>
 window['CboxReady'] = function (Cbox) {
-	Cbox('button', '6-852538-vNvLf8');
+    Cbox('button', '6-852538-vNvLf8');
 }
 </script>
 <script src="https://static.cbox.ws/embed/1.js" async></script>
@@ -25,9 +25,9 @@ window['CboxReady'] = function (Cbox) {
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
-        	<img src="img/logo/logo2.png">
+            <img src="img/logo/logo2.png">
         </div>
-        <div class="sidebar-brand-text mx-3">Zhirrr's API</div>
+        <div class="sidebar-brand-text mx-3">Dexi's API</div>
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
@@ -48,9 +48,33 @@ window['CboxReady'] = function (Cbox) {
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Media Features</h6>
-            <a class="collapse-item" href="api/fbdown/?url=MASUKIN_URL&apikey=MASUKIN_APIKEY">Facebook Downloader</a>
-            <a class="collapse-item" href="api/tiktod/?url=MASUKIN_URL&apikey=MASUKIN_APIKEY">Tiktok Downloader</a>
-            <a class="collapse-item" href="api/tiktod/stalk/?username=MASUKIN_USERNAME&apikey=MASUKIN_APIKEY">Tiktok Stalk</a>
+            <a class="collapse-item" href="api/fbdown/?url=MASUKIN_URL&apikey=noapi">Facebook Downloader</a>
+            <a class="collapse-item" href="api/tiktod/?url=MASUKIN_URL&apikey=noapi">Tiktok Downloader</a>
+            <a class="collapse-item" href="api/tiktod/stalk/?username=MASUKIN_USERNAME&apikey=noapi">Tiktok Stalk</a>
+            </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsesearch" aria-expanded="true"
+          aria-controls="collapsesearch">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Search API</span>
+        </a>
+        <div id="collapsesearch" class="collapse" aria-labelledby="headingsearch" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Search Features</h6>
+            <a class="collapse-item" href="api/searchgore?query=isis&apikey=noapi">Gore</a>
+            <a class="collapse-item" href="api/sfiles?query=anonytun&apikey=noapi">Sfile</a>
+            <a class="collapse-item" href="api/grups?query=isis&apikey=noapi">Group Wa</a>
+            <a class="collapse-item" href="api/wiki?query=isis&apikey=noapi">Wikipedia</a>
+            <a class="collapse-item" href="api/usergh?query=hexagonz&apikey=noapi">Github User</a>
+            <a class="collapse-item" href="api/wallpaperhd?query=sasuke&apikey=noapi">Wallpaper HD</a>
+            <a class="collapse-item" href="api/konachan?query=hatsune miku&apikey=noapi">Konachan</a>
+            <a class="collapse-item" href="api/kiryu?query=boruto&apikey=noapi">Kiryu</a>
+            <a class="collapse-item" href="api/happymod?query=traffic rider&apikey=noapi">Happymod</a>
+            <a class="collapse-item" href="api/apkmody?query=traffic rider&apikey=noapi">Apkmody</a>
+            <a class="collapse-item" href="api/androidone?query=traffic rider&apikey=noapi">Androidone</a>
+            <a class="collapse-item" href="api/resepmasakan?query=ayam geprek&apikey=noapi">Resep Masakan</a>
             </div>
         </div>
       </li>
@@ -63,17 +87,17 @@ window['CboxReady'] = function (Cbox) {
         <div id="collapseIslamic" class="collapse" aria-labelledby="headingIslamic" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Islamic  API</h6>
-            <a class="collapse-item" href="api/hadits?kitab=bukhari&nomor=52&apikey=MASUKAN_APIKEY">Hadits Shahih</a>
-            <a class="collapse-item" href="api/quran?surah=1&ayat=2&apikey=MASUKAN_APIKEY">Al Qur'an</a>
-            <a class="collapse-item" href="api/muslim/tahlil?apikey=MASUKAN_APIKEY">Doa Tahlil</a>
-            <a class="collapse-item" href="api/muslim/wirid?apikey=MASUKAN_APIKEY">Doa Wirid</a>
-            <a class="collapse-item" href="api/muslim/asmaulhusna?apikey=MASUKAN_APIKEY">Asmaul Husna</a>
-            <a class="collapse-item" href="api/muslim/doaharian?apikey=MASUKAN_APIKEY">Doa Harian</a>
-            <a class="collapse-item" href="api/muslim/ayatkursi?apikey=MASUKAN_APIKEY">Ayat Kursi</a>
-            <a class="collapse-item" href="api/kisahnabi?nabi=muhammad&apikey=MASUKAN_APIKEY">Kisah Nabi</a>
-            <a class="collapse-item" href="api/muslim/niatshalat?apikey=MASUKAN_APIKEY">Niat Shalat</a>
-            <a class="collapse-item" href="api/muslim/bacaanshalat?apikey=MASUKAN_APIKEY">Bacaan Shalat</a>
-            <a class="collapse-item" href="api/jadwalshalat?kota=jakartautara&apikey=MASUKAN_APIKEY">Jadwal Shalat</a>
+            <a class="collapse-item" href="api/hadits?kitab=bukhari&nomor=52&apikey=noapi">Hadits Shahih</a>
+            <a class="collapse-item" href="api/quran?surah=1&ayat=2&apikey=noapi">Al Qur'an</a>
+            <a class="collapse-item" href="api/muslim/tahlil?apikey=noapi">Doa Tahlil</a>
+            <a class="collapse-item" href="api/muslim/wirid?apikey=noapi">Doa Wirid</a>
+            <a class="collapse-item" href="api/muslim/asmaulhusna?apikey=noapi">Asmaul Husna</a>
+            <a class="collapse-item" href="api/muslim/doaharian?apikey=noapi">Doa Harian</a>
+            <a class="collapse-item" href="api/muslim/ayatkursi?apikey=noapi">Ayat Kursi</a>
+            <a class="collapse-item" href="api/kisahnabi?nabi=muhammad&apikey=noapi">Kisah Nabi</a>
+            <a class="collapse-item" href="api/muslim/niatshalat?apikey=noapi">Niat Shalat</a>
+            <a class="collapse-item" href="api/muslim/bacaanshalat?apikey=noapi">Bacaan Shalat</a>
+            <a class="collapse-item" href="api/jadwalshalat?kota=jakartautara&apikey=noapi">Jadwal Shalat</a>
           </div>
         </div>
       </li>
@@ -86,11 +110,11 @@ window['CboxReady'] = function (Cbox) {
         <div id="collapseKodepos" class="collapse" aria-labelledby="headingKodepos" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Images API</h6>
-            <a class="collapse-item" href="api/wallpaper/teknologi?apikey=MASUKAN_APIKEY">Wallpaper Teknologi</a>
-            <a class="collapse-item" href="api/wallpaper/programming?apikey=MASUKAN_APIKEY">Wallpaper Programming</a>
-            <a class="collapse-item" href="api/wallpaper/cyberspace?apikey=MASUKAN_APIKEY">Wallpaper CyberSpace</a>
-            <a class="collapse-item" href="api/wallpaper/muslim?apikey=MASUKAN_APIKEY">Wallpaper Muslim</a>
-            <a class="collapse-item" href="api/wallpaper/pegunungan?apikey=MASUKAN_APIKEY">Wallpaper Mountain View</a>
+            <a class="collapse-item" href="api/wallpaper/teknologi?apikey=noapi">Wallpaper Teknologi</a>
+            <a class="collapse-item" href="api/wallpaper/programming?apikey=noapi">Wallpaper Programming</a>
+            <a class="collapse-item" href="api/wallpaper/cyberspace?apikey=noapi">Wallpaper CyberSpace</a>
+            <a class="collapse-item" href="api/wallpaper/muslim?apikey=noapi">Wallpaper Muslim</a>
+            <a class="collapse-item" href="api/wallpaper/pegunungan?apikey=noapi">Wallpaper Mountain View</a>
             </div>
             </div>
             </li>
@@ -103,12 +127,12 @@ window['CboxReady'] = function (Cbox) {
         <div id="collapseGithub" class="collapse" aria-labelledby="headingGithub" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Random API</h6>
-            <a class="collapse-item" href="api/randomquote?apikey=MASUKIN_APIKEY">Quotes</a>
-            <a class="collapse-item" href="api/randomquote/muslim?apikey=MASUKIN_APIKEY">Quotes Islami</a>
-            <a class="collapse-item" href="api/quotes/kanye?apikey=MASUKIN_APIKEY">Quotes Kanye</a>
-            <a class="collapse-item" href="api/random/asmaulhusna?apikey=MASUKIN_APIKEY">Asmaul Husna</a>
-            <a class="collapse-item" href="api/random/meme?apikey=MASUKIN_APIKEY">Meme</a>
-            <a class="collapse-item" href="api/random/wallpaper?apikey=MASUKIN_APIKEY">Wallpaper</a>
+            <a class="collapse-item" href="api/randomquote?apikey=noapi">Quotes</a>
+            <a class="collapse-item" href="api/randomquote/muslim?apikey=noapi">Quotes Islami</a>
+            <a class="collapse-item" href="api/quotes/kanye?apikey=noapi">Quotes Kanye</a>
+            <a class="collapse-item" href="api/random/asmaulhusna?apikey=noapi">Asmaul Husna</a>
+            <a class="collapse-item" href="api/random/meme?apikey=noapi">Meme</a>
+            <a class="collapse-item" href="api/random/wallpaper?apikey=noapi">Wallpaper</a>
           </div>
         </div>
       </li>
@@ -121,16 +145,16 @@ window['CboxReady'] = function (Cbox) {
         <div id="collapseText" class="collapse" aria-labelledby="headingText" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Photooxy API</h6>
-            <a class="collapse-item" href="api/textmaker?text=halo&text2=hai&theme=glitch&apikey=MASUKIN_APIKEY">Glitch</a>
-            <a class="collapse-item" href="api/textmaker?text=halo&text2=hai&text3=gwganteng&theme=google-suggestion&apikey=MASUKIN_APIKEY">Google Suggestion</a>
-            <a class="collapse-item" href="api/textmaker/game?text=halo&text2=hai&theme=pubg&apikey=MASUKIN_APIKEY">PUBG</a>
-            <a class="collapse-item" href="api/textmaker/game?text=halo&text2=hai&theme=battlefield&apikey=MASUKIN_APIKEY">BattleField</a>
-            <a class="collapse-item" href="api/textmaker/senja?text=Zhirrr&theme=coffee-cup&apikey=MASUKIN_APIKEY">Coffee Cup</a>
-            <a class="collapse-item" href="api/textmaker/senja?text=Zhirrr&theme=coffee-cup2&apikey=MASUKIN_APIKEY">Coffee Cup 2</a>
-            <a class="collapse-item" href="api/textmaker/metallic?text=Zhirrr&theme=neon&apikey=MASUKIN_APIKEY">Neon</a>
-            <a class="collapse-item" href="api/textmaker/metallic?text=Zhirrr&theme=glow&apikey=MASUKIN_APIKEY">Glow</a>
-            <a class="collapse-item" href="api/textmaker/alam?text=Zhirrr&theme=summer&apikey=MASUKIN_APIKEY">Summer</a>
-            <a class="collapse-item" href="api/textmaker/alam?text=Zhirrr&theme=flower&apikey=MASUKIN_APIKEY">Flower</a>
+            <a class="collapse-item" href="api/textmaker?text=halo&text2=hai&theme=glitch&apikey=noapi">Glitch</a>
+            <a class="collapse-item" href="api/textmaker?text=halo&text2=hai&text3=gwganteng&theme=google-suggestion&apikey=noapi">Google Suggestion</a>
+            <a class="collapse-item" href="api/textmaker/game?text=halo&text2=hai&theme=pubg&apikey=noapi">PUBG</a>
+            <a class="collapse-item" href="api/textmaker/game?text=halo&text2=hai&theme=battlefield&apikey=noapi">BattleField</a>
+            <a class="collapse-item" href="api/textmaker/senja?text=Dexi&theme=coffee-cup&apikey=noapi">Coffee Cup</a>
+            <a class="collapse-item" href="api/textmaker/senja?text=Dexi&theme=coffee-cup2&apikey=noapi">Coffee Cup 2</a>
+            <a class="collapse-item" href="api/textmaker/metallic?text=Dexi&theme=neon&apikey=noapi">Neon</a>
+            <a class="collapse-item" href="api/textmaker/metallic?text=Dexi&theme=glow&apikey=noapi">Glow</a>
+            <a class="collapse-item" href="api/textmaker/alam?text=Dexi&theme=summer&apikey=noapi">Summer</a>
+            <a class="collapse-item" href="api/textmaker/alam?text=Dexi&theme=flower&apikey=noapi">Flower</a>
           </div>
         </div>
       </li>
@@ -143,8 +167,8 @@ window['CboxReady'] = function (Cbox) {
         <div id="collapseAnime" class="collapse" aria-labelledby="headingAnime" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Anime/Manga Features</h6>
-            <a class="collapse-item" href="api/anime/kusonime?search=planetarian&apikey=MASUKAN_APIKEY">Kusonime</a>
-            <a class="collapse-item" href="api/manga?search=kimetsu no yaiba&apikey=MASUKAN_APIKEY">Manga</a>
+            <a class="collapse-item" href="api/anime/kusonime?search=planetarian&apikey=noapi">Kusonime</a>
+            <a class="collapse-item" href="api/manga?search=kimetsu no yaiba&apikey=noapi">Manga</a>
             
           </div>
         </div>
@@ -157,8 +181,8 @@ window['CboxReady'] = function (Cbox) {
                 <div id="collapseGames" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                     <div class="py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Games Features</h6>
-            <a class="collapse-item" href="/api/kuis/caklontong?apikey=MASUKAN_APIKEY">Cak Lontong</a>
-            <a class="collapse-item" href="/api/kuis/tebakgambar?apikey=MASUKAN_APIKEY">Tebak Gambar</a>
+            <a class="collapse-item" href="/api/kuis/caklontong?apikey=noapi">Cak Lontong</a>
+            <a class="collapse-item" href="/api/kuis/tebakgambar?apikey=noapi">Tebak Gambar</a>
             </div>
             </div>
         </li>
@@ -171,23 +195,23 @@ window['CboxReady'] = function (Cbox) {
         <div id="collapseother" class="collapse" aria-labelledby="headingother" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Other Menu</h6>
-            <a class="collapse-item" href="api/nulis?text=ZahirGanteng&apikey=MASUKAN_APIKEY">Nulis Buku</a>
-            <a class="collapse-item" href="api/infonpm?query=zhirrr-api&hostname=zhirrr&apikey=MASUKAN_APIKEY">Info NPM</a>
-            <a class="collapse-item" href="api/infogempa?apikey=MASUKAN_APIKEY">Info Gempa</a>
-            <a class="collapse-item" href="api/cuaca?kabupaten=kab bungo&apikey=MASUKAN_APIKEY">Info Cuaca</a>
-            <a class="collapse-item" href="api/covidindo?apikey=MASUKAN_APIKEY">Covid Indo</a>
-            <a class="collapse-item" href="api/covidworld?apikey=MASUKAN_APIKEY">Covid World</a>
-            <a class="collapse-item" href="api/short/tiny?url=google.com&apikey=MASUKAN_APIKEY">Short Link</a>
-            <a class="collapse-item" href="api/wikipedia?search=jembatan&apikey=MASUKAN_APIKEY">Wikipedia</a>
-            <a class="collapse-item" href="api/drakorasia?search=tale&apikey=MASUKAN_APIKEY">Drakor Asia</a>
-            <a class="collapse-item" href="api/fakedata?country=en&apikey=MASUKAN_APIKEY">Fake Data</a>
-            <a class="collapse-item" href="api/hilih?kata=aku kan ganteng banget&apikey=MASUKAN_APIKEY">Kata Hilih</a>
-            <a class="collapse-item" href="api/liriklagu?lagu=sayang&apikey=MASUKAN_APIKEY">Lirik Lagu</a>
-            <a class="collapse-item" href="api/chordlagu?lagu=sayang&apikey=MASUKAN_APIKEY">Chord Lagu</a>
-            <a class="collapse-item" href="api/kbbi?kata=pohon&apikey=MASUKAN_APIKEY">KBBI</a>
-            <a class="collapse-item" href="api/kodepos?kota=jakarta&apikey=MASUKAN_APIKEY">Kode Pos</a>
-            <a class="collapse-item" href="api/translate?kata=hi&apikey=MASUKAN_APIKEY">Translate</a>
-            <a class="collapse-item" href="api/gabut?apikey=MASUKAN_APIKEY">Gabut</a>
+            <a class="collapse-item" href="api/nulis?text=ZahirGanteng&apikey=noapi">Nulis Buku</a>
+            <a class="collapse-item" href="api/infonpm?query=zhirrr-api&hostname=zhirrr&apikey=noapi">Info NPM</a>
+            <a class="collapse-item" href="api/infogempa?apikey=noapi">Info Gempa</a>
+            <a class="collapse-item" href="api/cuaca?kabupaten=kab bungo&apikey=noapi">Info Cuaca</a>
+            <a class="collapse-item" href="api/covidindo?apikey=noapi">Covid Indo</a>
+            <a class="collapse-item" href="api/covidworld?apikey=noapi">Covid World</a>
+            <a class="collapse-item" href="api/short/tiny?url=google.com&apikey=noapi">Short Link</a>
+            <a class="collapse-item" href="api/wikipedia?search=jembatan&apikey=noapi">Wikipedia</a>
+            <a class="collapse-item" href="api/drakorasia?search=tale&apikey=noapi">Drakor Asia</a>
+            <a class="collapse-item" href="api/fakedata?country=en&apikey=noapi">Fake Data</a>
+            <a class="collapse-item" href="api/hilih?kata=aku kan ganteng banget&apikey=noapi">Kata Hilih</a>
+            <a class="collapse-item" href="api/liriklagu?lagu=sayang&apikey=noapi">Lirik Lagu</a>
+            <a class="collapse-item" href="api/chordlagu?lagu=sayang&apikey=noapi">Chord Lagu</a>
+            <a class="collapse-item" href="api/kbbi?kata=pohon&apikey=noapi">KBBI</a>
+            <a class="collapse-item" href="api/kodepos?kota=jakarta&apikey=noapi">Kode Pos</a>
+            <a class="collapse-item" href="api/translate?kata=hi&apikey=noapi">Translate</a>
+            <a class="collapse-item" href="api/gabut?apikey=noapi">Gabut</a>
           </div>
         </div>
       </li>
@@ -210,7 +234,7 @@ window['CboxReady'] = function (Cbox) {
             </a>
       </li>
       <li class="nav-item">
-            <a class="nav-link collapsed" href="https://github.com/Zhirrr">
+            <a class="nav-link collapsed" href="https://github.com/Dexi">
             <i class="fab fa-fw fa-github"></i>
                     <span>Github</span>
             </a>
@@ -222,7 +246,7 @@ window['CboxReady'] = function (Cbox) {
             </a>
       </li>
       <hr class="sidebar-divider">
-      <div class="version"><b>Made With ♥️ By Zhirrr</b></div>
+      <div class="version"><b>Made With ♥️ By Dexi</b></div>
     </ul>
     <!-- Sidebar -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -380,7 +404,7 @@ window['CboxReady'] = function (Cbox) {
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-uppercase mb-1">Info Developer</div>
                       <br>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Zhirrr</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Dexi</div>
                       <div class="mt-2 mb-0 text-muted text-xs">
                         <span class="text-success mr-2"> 13. y.o Programmer</span>
                       </div>
@@ -395,8 +419,8 @@ window['CboxReady'] = function (Cbox) {
 <!-- Pie Chart -->
             <div class="col-xl-4 col-lg-5">
               <div class="card mb-4">
-              	<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              	<h6 class="m-0 font-weight-bold text-primary">Progamming Skill</h6>
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Progamming Skill</h6>
                   <div class="dropdown no-arrow">
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                       aria-labelledby="dropdownMenuLink">
@@ -449,7 +473,7 @@ window['CboxReady'] = function (Cbox) {
 
           <div class="row">
             <div class="col-lg-12 text-center">
-              <p>Suka Dengan API Nya ? Boleh Dong, Follow Github Gw : <a href="https://github.com/Zhirrr"
+              <p>Suka Dengan API Nya ? Boleh Dong, Follow Github Gw : <a href="https://github.com/Dexi"
                   class="btn btn-primary btn-sm" target="_blank"><i class="fab fa-fw fa-github"></i>&nbsp;GitHub</a></p>
             </div>
           </div>
@@ -462,7 +486,7 @@ window['CboxReady'] = function (Cbox) {
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>Copyright &copy; 2021 - Developed By
-              <b><a href="https://github.com/Zhirrr" target="_blank">Zhirrr</a></b>
+              <b><a href="https://github.com/Dexi" target="_blank">Dexi</a></b>
             </span>
           </div>
         </div>
