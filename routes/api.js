@@ -3,6 +3,7 @@ __path = process.cwd()
 var express = require('express');
 var db = require(__path + '/database/db');
 const skrep = require("../lib/skrep");
+const ptl = JSON.parse(fs.readFileSync('./lib/ptl.json'))
 const imgbb = require('imgbb-uploader')
 const { exec, spawn } = require('child_process');
 const axios = require('axios')
@@ -1893,12 +1894,10 @@ router.get('/ptl', async(req, res) => {
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
-    JSON.parse(fs.readFileSync('./lib/ptl.json')).then(result => {
-        rand = result[Math.floor(Math.random() * result.length)]
+        rand = ptl[Math.floor(Math.random() * ptl.length)]
         getBuffer(rand).then(data => {
         fs.writeFileSync('./media/ptl.mp4', data)
         res.sendFile('/app/media/ptl.mp4')
-    })
     }).catch(error => {
         console.log(error);
         res.status(500).send({status: 500, message: 'Sesuatu yang anda cari tidak ditemukan/error!'});
@@ -1913,7 +1912,7 @@ router.get('/infohoax', async(req, res) => {
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.infohoax().then(result => {
-        res.sendFile({
+        res.send({
           creator: 'Fajar Ihsana',
           result: result
         })
@@ -1965,7 +1964,7 @@ router.get('/bukukanan', async(req, res) => {
 const splitText = query.replace(/(\S+\s*){1,9}/g, '$&\n')
 const fixHeight = splitText.split('\n').slice(0, 31).join('\n')
 spawn('convert', [
-    './media/nulis/sebelumkiri.jpg',
+    './media/nulis/sebelumkanan.jpg',
     '-font',
     './media/nulis/Indie-Flower.ttf',
     '-size',
