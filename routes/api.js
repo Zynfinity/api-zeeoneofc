@@ -3,11 +3,11 @@ __path = process.cwd()
 var express = require('express');
 var db = require(__path + '/database/db');
 const skrep = require("../lib/skrep");
-const ptl = JSON.parse(fs.readFileSync('./lib/ptl.json'))
 const imgbb = require('imgbb-uploader')
 const { exec, spawn } = require('child_process');
 const axios = require('axios')
 const fs = require('fs')
+const ptl = JSON.parse(fs.readFileSync('./lib/ptl.json'))
 const hit = JSON.parse(fs.readFileSync('./database/hit.json'))
 try {
 var zahirr = db.get("zahirr");
