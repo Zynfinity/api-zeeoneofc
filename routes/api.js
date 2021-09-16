@@ -51,7 +51,11 @@ var cookie = "HSID=A7EDzLn3kae2B1Njb;SSID=AheuwUjMojTWvA5GN;APISID=cgfXh13rQbb4z
 const isUrl = (url) => {
 			return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%.+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%+.~#?&/=]*)/, 'gi'))
 }
-
+const misparam = (param) => {
+  return {
+    message: `Masukkan parameter ${param}!`
+  }
+}
 const mess = {
   noimg: 'Masukkan Parameter url gambar!',
   error: {
@@ -2725,6 +2729,35 @@ router.get('/canvas/wasted', async(req, res) => {
   .catch(error => {
     res.json(mess.error)
   })
+})
+
+//welcome left canvas
+router.get('/canvas/welcome', async(req, res) => {
+  const nama = req.query.username
+  const mem = req.query.memcount
+  const avatar = req.query.ppurl
+  const gname = req.query.groupname
+  const bg = req.query.bgurl
+  if(!nama) return res.json(misparam('username'))
+  if(!mem) return res.json(misparam('memcount'))
+  if(!avatar) return res.json(misparam('ppurl'))
+  if(!gname) return res.json(misparam('groupname'))
+  if(!bg) return res.json(misparam('bgurl'))
+  const image = new dcanvas.Welcome()
+    .setUsername(nama)
+    .setDiscriminator("0001")
+    .setMemberCount(mem)
+    .setGuildName(gname)
+    .setAvatar("https://www.site.com/avatar.jpg")
+    .setColor("border", "#8015EA")
+    .setColor("username-box", "#8015EA")
+    .setColor("discriminator-box", "#8015EA")
+    .setColor("message-box", "#8015EA")
+    .setColor("title", "#8015EA")
+    .setColor("avatar", "#8015EA")
+    .setBackground("https://site.com/background.jpg")
+    .toAttachment();
+    res.sendFile(image)
 })
 
 module.exports = router
