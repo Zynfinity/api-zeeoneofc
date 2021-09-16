@@ -1922,7 +1922,7 @@ router.get('/infohoax', async(req, res) => {
         res.status(500).send({status: 500, message: 'Sesuatu yang anda cari tidak ditemukan/error!'});
     });
 })
-router.get('/nuliskiri', async(req, res) => {
+router.get('/bukukiri', async(req, res) => {
     const query = req.query.teks;
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
@@ -1953,7 +1953,7 @@ spawn('convert', [
     res.sendFile('/app/media/nulis/setelahkiri.jpg')
 })
 })
-router.get('/nuliskanan', async(req, res) => {
+router.get('/bukukanan', async(req, res) => {
     const query = req.query.teks;
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
