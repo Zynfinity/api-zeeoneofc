@@ -64,7 +64,9 @@ const mess = {
   },
   url: 'Url Tidak Valid'
 }
-
+const getRandom = (ext) => {
+	return `${Math.floor(Math.random() * 10000)}${ext}`
+}
 loghandler = {
     notparam: {
         status: false,
@@ -2743,6 +2745,8 @@ router.get('/canvas/welcome', async(req, res) => {
   if(!avatar) return res.json(misparam('ppurl'))
   if(!gname) return res.json(misparam('groupname'))
   if(!bg) return res.json(misparam('bgurl'))
+  const asu = await getRandom()
+  const asi = asu.replace('undefined','')
   const image = new dcanvas.Welcome()
     .setUsername(nama)
     .setDiscriminator("0001")
@@ -2757,7 +2761,8 @@ router.get('/canvas/welcome', async(req, res) => {
     .setColor("avatar", "#8015EA")
     .setBackground("https://site.com/background.jpg")
     .toAttachment();
-    res.sendFile(image)
+	fs.writeFileSync(`./media/welcome_${asi}.png`, image)
+	res.sendFile(`/app/media/welcome_${asi}.png`)
 })
 
 module.exports = router
