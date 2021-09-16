@@ -782,25 +782,6 @@ router.get('/kisahnabi', async (req, res, next) => {
 			res.json(loghandler.error)
 		})
 })
-
-router.get('/infogempa', async (req, res, next) => {
-	        const apikey = req.query.apikey
-
-		if (!apikey) return res.json(loghandler.notparam)
-		if (apikey != apii) return res.json(loghandler.invalidKey)
-		Gempa()
-		.then(result => {
-			res.json({
-				creator: creator,
-				result
-			})
-		})
-		.catch(e => {
-			console.log('Error :', color(e, 'red'))
-			res.json(loghandler.error)
-		})
-})
-
 router.get('/hadits', async (req, res, next) => {
         const apikey = req.query.apikey,
             kitab = req.query.kitab,
@@ -1917,7 +1898,7 @@ router.get('/ptl', async(req, res) => {
     })
     }).catch(error => {
         console.log(error);
-        res.status(500).send({status: 500, message: 'Internal Server Error'});
+        res.status(500).send({status: 500, message: error});
     });
 })
 
@@ -2051,7 +2032,7 @@ router.get('/asupan', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2061,7 +2042,7 @@ router.get('/asupan', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2070,7 +2051,7 @@ router.get('/searchgore', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2080,7 +2061,7 @@ router.get('/searchgore', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2089,7 +2070,7 @@ router.get('/grups', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2099,7 +2080,7 @@ router.get('/grups', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2108,7 +2089,7 @@ router.get('/sfiles', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2122,7 +2103,7 @@ router.get('/sfiles', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2131,7 +2112,7 @@ router.get('/sfiledown', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2155,7 +2136,7 @@ router.get('/sfiledown', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2184,7 +2165,7 @@ router.get('/zippy', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2193,7 +2174,7 @@ router.get('/happymod', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2207,7 +2188,7 @@ router.get('/happymod', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2216,7 +2197,7 @@ router.get('/apkmody', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2230,7 +2211,7 @@ router.get('/apkmody', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2239,7 +2220,7 @@ router.get('/happymod', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2253,7 +2234,7 @@ router.get('/happymod', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2262,7 +2243,7 @@ router.get('/androidone', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2276,7 +2257,7 @@ router.get('/androidone', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2285,7 +2266,7 @@ router.get('/usergh', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2299,7 +2280,7 @@ router.get('/usergh', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2308,7 +2289,7 @@ router.get('/kiryu', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2322,7 +2303,7 @@ router.get('/kiryu', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2331,7 +2312,7 @@ router.get('/dewabatch', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2345,7 +2326,7 @@ router.get('/dewabatch', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2354,7 +2335,7 @@ router.get('/wattpad', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2368,7 +2349,7 @@ router.get('/wattpad', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2377,7 +2358,7 @@ router.get('/drakor', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2391,7 +2372,7 @@ router.get('/drakor', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2400,7 +2381,7 @@ router.get('/wallpaperhd', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2414,7 +2395,7 @@ router.get('/wallpaperhd', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2423,21 +2404,21 @@ router.get('/konachan', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.konachan(query).then(resu => {
-        res.status(200).send({
-            status: 200,
-            creator: 'Fajar Ihsana',
-            data: resu
-        });
+      rand = resu[Math.floor(Math.random() * resu.length)]
+        getBuffer(rand).then(data => {
+        fs.writeFileSync('./media/konachan.png', data)
+        res.sendFile('/app/media/konachan.png')
+    })
     }).catch(error => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2446,7 +2427,7 @@ router.get('/wiki', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2460,7 +2441,7 @@ router.get('/wiki', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2469,7 +2450,7 @@ router.get('/resepmasakan', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2494,7 +2475,7 @@ router.get('/resepmasakan', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2519,7 +2500,7 @@ router.get('/randomgore', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2546,7 +2527,7 @@ router.get('/infogempa', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2555,7 +2536,7 @@ router.get('/sliding', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2565,7 +2546,7 @@ router.get('/sliding', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2574,7 +2555,7 @@ router.get('/colorful', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2584,7 +2565,7 @@ router.get('/colorful', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2593,7 +2574,7 @@ router.get('/army', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2603,7 +2584,7 @@ router.get('/army', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2612,7 +2593,7 @@ router.get('/glowing', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2622,7 +2603,7 @@ router.get('/glowing', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2631,7 +2612,7 @@ router.get('/retro', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2641,7 +2622,7 @@ router.get('/retro', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
@@ -2650,7 +2631,7 @@ router.get('/bold', async(req, res) => {
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Input Parameter query & apikey`
+        message: `Masukkan parameter dengan lengkap!`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
@@ -2663,7 +2644,7 @@ router.get('/bold', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: 'Internal Server Error'
+            message: error
         })
     });
 })
