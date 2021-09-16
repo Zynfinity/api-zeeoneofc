@@ -2631,7 +2631,7 @@ router.get('/tiktok', async(req, res) => {
     });
 })
 router.get('/igdl', async(req, res) => {
-    const query = req.query.url
+    const url = req.query.url
     const apikey = req.query.apikey;
     if (apikey === undefined) return res.status(404).send({
         status: 404,
