@@ -19,7 +19,9 @@ var creatorList = ['@zahirrr','@zhirrrgans','@zhirr_ajalah','@zahiranjay', '@zah
 var creator = creatorList[Math.floor(Math.random() * creatorList.length)];
 var apii = 'noapi'
 
-var ytdl = require('ytdl-core');
+//var ytdl = require('ytdl-core');
+var yts = require('yt-search')
+var { yta, ytv} = require('../lib/ytdl')
 var ytpl = require('ytpl');
 var secure = require('ssl-express-www');
 var cors = require('cors');
@@ -2550,17 +2552,19 @@ router.get('/infogempa', async(req, res) => {
         })
     });
 })
-router.get('/sliding', async(req, res) => {
-    const query = req.query.text;
+router.get('/ytplayaudio', async(req, res) => {
+    const query = req.query.query
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
+    if (apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Masukkan parameter dengan lengkap!`
+        message: `Input Parameter apikey`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
-    skrep.textmakervid(query, 'poly').then(resu => {
-        res.status(200).send({status: 200, result: resu.url});
+    yts(query).then(resu => {
+        yta(resu.all[0].url).then(data => {
+          res.send(data)
+        })
     }).catch(error => {
         console.log(error);
         res.status(500).send({
@@ -2569,17 +2573,17 @@ router.get('/sliding', async(req, res) => {
         })
     });
 })
-router.get('/colorful', async(req, res) => {
-    const query = req.query.text;
+router.get('/ytmp3', async(req, res) => {
+    const query = req.query.url
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
+    if (apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Masukkan parameter dengan lengkap!`
+        message: `Input Parameter apikey`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
-    skrep.textmakervid(query, 'colorful').then(resu => {
-        res.status(200).send({status: 200, result: resu.url});
+    yta(url).then(data => {
+      res.send(data)
     }).catch(error => {
         console.log(error);
         res.status(500).send({
@@ -2588,17 +2592,17 @@ router.get('/colorful', async(req, res) => {
         })
     });
 })
-router.get('/army', async(req, res) => {
-    const query = req.query.text;
+router.get('/ytmp4', async(req, res) => {
+    const query = req.query.url
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
+    if (apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Masukkan parameter dengan lengkap!`
+        message: `Input Parameter apikey`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
-    skrep.textmakervid(query, 'army').then(resu => {
-        res.status(200).send({status: 200, result: resu.url});
+    ytv(url).then(data => {
+      res.send(data)
     }).catch(error => {
         console.log(error);
         res.status(500).send({
@@ -2607,17 +2611,17 @@ router.get('/army', async(req, res) => {
         })
     });
 })
-router.get('/glowing', async(req, res) => {
-    const query = req.query.text;
+router.get('/tiktok', async(req, res) => {
+    const query = req.query.url
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
+    if (apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Masukkan parameter dengan lengkap!`
+        message: `Input Parameter apikey`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
-    skrep.textmakervid(query, 'glowing').then(resu => {
-        res.status(200).send({status: 200, result: resu.url});
+    skrep.ttdl(url).then(data => {
+      res.send(data)
     }).catch(error => {
         console.log(error);
         res.status(500).send({
@@ -2626,17 +2630,17 @@ router.get('/glowing', async(req, res) => {
         })
     });
 })
-router.get('/retro', async(req, res) => {
-    const query = req.query.text;
+router.get('/igdl', async(req, res) => {
+    const query = req.query.url
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
+    if (apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Masukkan parameter dengan lengkap!`
+        message: `Input Parameter apikey`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
-    skrep.textmakervid(query, 'retro').then(resu => {
-        res.status(200).send({status: 200, result: resu.url});
+    skrep.igdown(url).then(data => {
+      res.send(data)
     }).catch(error => {
         console.log(error);
         res.status(500).send({
@@ -2645,20 +2649,17 @@ router.get('/retro', async(req, res) => {
         })
     });
 })
-router.get('/bold', async(req, res) => {
-    const query = req.query.text;
+router.get('/twitter', async(req, res) => {
+    const query = req.query.url
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
+    if (apikey === undefined) return res.status(404).send({
         status: 404,
-        message: `Masukkan parameter dengan lengkap!`
+        message: `Input Parameter apikey`
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
-    skrep.textmakervid(query, 'bold').then(resu => {
-    getBuffer(resu.url).then(data => {
-    fs.writeFileSync('./media/bold.mp4', data)
-    res.sendFile('./app/media/bold.mp4')
-    })
+    skrep.twitter(url).then(data => {
+      res.send(data)
     }).catch(error => {
         console.log(error);
         res.status(500).send({
@@ -2667,5 +2668,23 @@ router.get('/bold', async(req, res) => {
         })
     });
 })
-
+router.get('/igstalk', async(req, res) => {
+    const query = req.query.username
+    const apikey = req.query.apikey;
+    if (apikey === undefined) return res.status(404).send({
+        status: 404,
+        message: `Input Parameter apikey`
+    });
+        if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+    skrep.igstalk(username).then(data => {
+      res.send(data)
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
+        })
+    });
+})
 module.exports = router
