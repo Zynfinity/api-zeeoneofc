@@ -7,6 +7,7 @@ const imgbb = require('imgbb-uploader')
 const { exec, spawn } = require('child_process');
 const axios = require('axios')
 const fs = require('fs')
+const hit = JSON.parse(fs.readFileSync('./database/hit.json'))
 try {
 var zahirr = db.get("zahirr");
 } catch (e) {
@@ -164,6 +165,7 @@ var len = 15
  	ap = await zahirr.findOne({apikey:api})
  return ap;
  }
+ hit.push(router.get)
 router.get('/find', async (req, res, next) => {
     var apikey = req.query.apikey
     if (!apikey) return res.json(loghandler.notparam)
@@ -1891,14 +1893,15 @@ router.get('/ptl', async(req, res) => {
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
-    readFileTxt('./lib/data/ptl.txt').then(result => {
-        getBuffer(result).then(data => {
+    JSON.parse(fs.readFileSync('./lib/ptl.json')).then(result => {
+        rand = result[Math.floor(Math.random() * result.length)]
+        getBuffer(rand).then(data => {
         fs.writeFileSync('./media/ptl.mp4', data)
         res.sendFile('/app/media/ptl.mp4')
     })
     }).catch(error => {
         console.log(error);
-        res.status(500).send({status: 500, message: error});
+        res.status(500).send({status: 500, message: 'Sesuatu yang anda cari tidak ditemukan/error!'});
     });
 })
 
@@ -2042,7 +2045,7 @@ router.get('/asupan', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2061,7 +2064,7 @@ router.get('/searchgore', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2080,7 +2083,7 @@ router.get('/grups', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2103,7 +2106,7 @@ router.get('/sfiles', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2136,7 +2139,7 @@ router.get('/sfiledown', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2165,7 +2168,7 @@ router.get('/zippy', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2188,7 +2191,7 @@ router.get('/happymod', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2211,7 +2214,7 @@ router.get('/apkmody', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2234,7 +2237,7 @@ router.get('/happymod', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2257,7 +2260,7 @@ router.get('/androidone', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2280,7 +2283,7 @@ router.get('/usergh', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2303,7 +2306,7 @@ router.get('/kiryu', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2326,7 +2329,7 @@ router.get('/dewabatch', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2349,7 +2352,7 @@ router.get('/wattpad', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2372,7 +2375,7 @@ router.get('/drakor', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2395,7 +2398,7 @@ router.get('/wallpaperhd', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2418,7 +2421,7 @@ router.get('/konachan', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2441,7 +2444,7 @@ router.get('/wiki', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2475,7 +2478,7 @@ router.get('/resepmasakan', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2500,7 +2503,7 @@ router.get('/randomgore', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2527,7 +2530,7 @@ router.get('/infogempa', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2546,7 +2549,7 @@ router.get('/sliding', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2565,7 +2568,7 @@ router.get('/colorful', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2584,7 +2587,7 @@ router.get('/army', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2603,7 +2606,7 @@ router.get('/glowing', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2622,7 +2625,7 @@ router.get('/retro', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
@@ -2644,7 +2647,7 @@ router.get('/bold', async(req, res) => {
         console.log(error);
         res.status(500).send({
             status: 500,
-            message: error
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
         })
     });
 })
