@@ -2575,7 +2575,7 @@ router.get('/ytplayaudio', async(req, res) => {
     });
 })
 router.get('/ytmp3', async(req, res) => {
-    const query = req.query.url
+    const url = req.query.url
     const apikey = req.query.apikey;
     if (apikey === undefined) return res.status(404).send({
         status: 404,
@@ -2594,7 +2594,7 @@ router.get('/ytmp3', async(req, res) => {
     });
 })
 router.get('/ytmp4', async(req, res) => {
-    const query = req.query.url
+    const url = req.query.url
     const apikey = req.query.apikey;
     if (apikey === undefined) return res.status(404).send({
         status: 404,
@@ -2613,7 +2613,7 @@ router.get('/ytmp4', async(req, res) => {
     });
 })
 router.get('/tiktok', async(req, res) => {
-    const query = req.query.url
+    const url = req.query.url
     const apikey = req.query.apikey;
     if (apikey === undefined) return res.status(404).send({
         status: 404,
