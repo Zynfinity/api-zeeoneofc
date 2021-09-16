@@ -2677,7 +2677,7 @@ router.get('/igstalk', async(req, res) => {
     });
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
-    skrep.igstalk(username).then(data => {
+    skrep.igstalk(query).then(data => {
       res.send(data)
     }).catch(error => {
         console.log(error);
