@@ -960,7 +960,7 @@ router.get('/textmaker/alam', async (req, res, next) => {
                                 .then(data => {
                                   getBuffer(data.data.url).then(async resu => {
                               fs.writeFileSync(`./media/flower_${asi}.png`, resu)
-                              res.sendFile(`/app/media/flowe_${asi}.png`)
+                              res.sendFile(`/app/media/flower_${asi}.png`)
                               await sleep(3000)
                               fs.unlinkSync(`./media/flower_${asi}.png`)
                               })
