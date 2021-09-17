@@ -1977,7 +1977,7 @@ spawn('convert', [
 ])
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
-    res.sendFile(`/app/media/nulis/setelahkiri_${asi}.jpg`).then({
+    res.sendFile(`/app/media/nulis/setelahkiri_${asi}.jpg`).then(o => {
       fs.unlinkSync(`media/nulis/setelahkiri_${asi}.jpg`)
       })
 })
