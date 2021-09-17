@@ -2727,7 +2727,7 @@ router.get('/canvas/wasted', async(req, res) => {
   if(!img) return res.json(mess.noimg)
   if(!isUrl(img)) return res.json(mess.url)
   canvac.Canvas.wasted(img).then(async data => {
-    canvac.write(data, `./media/wasted_${asi}.png`)
+    await canvac.write(data, `./media/wasted_${asi}.png`)
     await res.sendFile(`/app/media/wasted_${asi}.png`)
 fs.unlinkSync(`./media/wasted_${asi}.png`)
   })
@@ -2749,7 +2749,7 @@ router.get('/canvas/triggered', async(req, res) => {
   if(!img) return res.json(misparam(url))
   if(!isUrl(img)) return res.json(mess.url)
   memegen.trigger(img).then(async data => {
-    fs.writeFileSync(`./media/trigger_${asi}.gif`)
+    await fs.writeFileSync(`./media/trigger_${asi}.gif`)
     await res.sendFile(`/app/media/trigger_${asi}.gif`)
   fs.unlinkSync(`./media/trigger_${asi}.gif`)
   })
@@ -2790,7 +2790,7 @@ router.get('/canvas/welcome', async(req, res) => {
     .setColor("avatar", "#8015EA")
     .setBackground(bg)
     .toAttachment();
-    fs.writeFileSync(`./media/welcome_${asi}.png`,image.toBuffer())
+    await fs.writeFileSync(`./media/welcome_${asi}.png`,image.toBuffer())
     await res.sendFile(`/app/media/welcome_${asi}.png`)
     fs.unlinkSync(`./media/welcome_${asi}.png`)
   }catch{
@@ -2828,7 +2828,7 @@ router.get('/canvas/goodbye', async(req, res) => {
     .setColor("avatar", "#8015EA")
     .setBackground(bg)
     .toAttachment();
-    fs.writeFileSync(`./media/goodbye_${asi}.png`,image.toBuffer())
+    await fs.writeFileSync(`./media/goodbye_${asi}.png`,image.toBuffer())
   await res.sendFile(`/app/media/goodbye_${asi}.png`)
     fs.unlinkSync(`./media/goodbye_${asi}.png`)
   }catch{
