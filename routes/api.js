@@ -2835,7 +2835,7 @@ router.get('/canvas/goodbye', async(req, res) => {
     .setBackground(bg)
     .toAttachment();
     await fs.writeFileSync(`./media/goodbye_${asi}.png`,image.toBuffer())
-  await res.sendFile(`/app/media/goodbye_${asi}.png`)
+  res.sendFile(`/app/media/goodbye_${asi}.png`)
     await fs.unlinkSync(`./media/goodbye_${asi}.png`)
   }catch{
     return res.json(mess.error)
