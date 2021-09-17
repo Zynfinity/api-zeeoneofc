@@ -67,8 +67,10 @@ const mess = {
 const getRandom = (ext) => {
 	return `${Math.floor(Math.random() * 10000)}${ext}`
 }
-  const asu = await getRandom()
-  const asi = asu.replace('undefined','')
+const asi = async() => {
+	asu = await getRandom()
+	return asu.replace('undefined','')
+}
 loghandler = {
     notparam: {
         status: false,
@@ -2801,8 +2803,6 @@ router.get('/canvas/goodbye', async(req, res) => {
   const gname = req.query.groupname
   const bg = req.query.bgurl
   const apikey = req.query.apikey
-  const asu = await getRandom()
-  const asi = asu.replace('undefined','')
   if(!nama) return res.json(misparam('username'))
   if(!mem) return res.json(misparam('memcount'))
   if(!avatar) return res.json(misparam('ppurl'))
