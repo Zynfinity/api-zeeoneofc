@@ -16,7 +16,7 @@ var zahirr = db.get("zahirr");
   console.log('')
 }
 
-var creatorList = ['@zahirrr','@zhirrrgans','@zhirr_ajalah','@zahiranjay', '@zahirganssss','@zhirrganteng','@zahirrgantengg'];
+var creatorList = ['@zahirrr','@Fajar Ihsana'];
 var creator = creatorList[Math.floor(Math.random() * creatorList.length)];
 var apii = 'noapi'
 
@@ -76,7 +76,7 @@ loghandler = {
         creator: `${creator}`,
         code: 406,
         message: 'masukan parameter apikey',
-        getApikey: 'gak punya apikey? chat gw aja yaaa di wa.me/6287798005230 , key nya gratis kok gan, jadi santuyy ajaa'
+        getApikey: 'gak punya apikey? chat gw aja yaaa di wa.me/6287798005230, key nya gratis kok gan, jadi santuyy ajaa'
     },
     notkey: {
         status: false,
@@ -148,7 +148,7 @@ loghandler = {
         status: false,
         creator: `${creator}`,
         code: 406,
-        message: 'apikey invalid, gak punya apikey? chat gw aja yaaa di wa.me/6287798005230 , key nya gratis kok gan, jadi santuyy ajaa'
+        message: 'apikey invalid, gak punya apikey? chat gw aja yaaa di wa.me/6287798005230, key nya gratis kok gan, jadi santuyy ajaa'
     },
     invalidlink: {
         status: false,
@@ -540,6 +540,8 @@ router.get('/textmaker', async (req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   if(apikey != apii) return res.json(loghandler.invalidKey)
         if (!theme) return res.json(loghandler.nottheme)
+        const asu = await getRandom()
+        const asi = asu.replace('undefined','')
         if (theme != 'glitch' && theme != 'google-suggestion') return res.json(loghandler.notheme)
         if (!text) return res.json(loghandler.nottext)
 
@@ -558,22 +560,12 @@ router.get('/textmaker', async (req, res, next) => {
                         $(".thumbnail").find("img").each(function() {
                             h = $(this).attr("src")
                             var result = "https://photooxy.com/"+h
-                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=93f5c8966cfaf3ca19051ee9f85c14f3&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
+                            getBuffer(result).then(async data => {
+                              fs.writeFileSync(`./media/glitch_${asi}.png`)
+                              res.sendFile(`/app/media/glitch_${asi}.png`)
+                              await sleep(3000)
+                              fs.unlinkSync(`./media/glitch_${asi}.png`)
+                            })
                         })
                     }
                 })
@@ -1917,11 +1909,7 @@ const getBuffer = async (url, options) => {
 }
 router.get('/ptl', async(req, res) => {
     const apikey = req.query.apikey;
-    if (apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Input Parameter apikey`
-    });
-        if(!apikey) return res.json(loghandler.notparam)
+    if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
         rand = ptl[Math.floor(Math.random() * ptl.length)]
         getBuffer(rand).then(data => {
@@ -1934,17 +1922,10 @@ router.get('/ptl', async(req, res) => {
 })
 router.get('/infohoax', async(req, res) => {
     const apikey = req.query.apikey;
-    if (apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Input Parameter apikey`
-    });
-        if(!apikey) return res.json(loghandler.notparam)
+    if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.infohoax().then(result => {
-        res.send({
-          creator: 'Fajar Ihsana',
-          result: result
-        })
+        res.send(result)
     }).catch(error => {
         console.log(error);
         res.status(500).send({status: 500, message: 'Sesuatu yang anda cari tidak ditemukan/error!'});
@@ -1955,11 +1936,8 @@ router.get('/bukukiri', async(req, res) => {
     const apikey = req.query.apikey;
     const asu = await getRandom()
     const asi = asu.replace('undefined','')
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Input Parameter teks & apikey`
-    });
-        if(!apikey) return res.json(loghandler.notparam)
+    if(!query) return res.json(misparam('teks')) 
+    if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
 const splitText = query.replace(/(\S+\s*){1,9}/g, '$&\n')
 const fixHeight = splitText.split('\n').slice(0, 31).join('\n')
@@ -1990,11 +1968,8 @@ router.get('/bukukanan', async(req, res) => {
     const apikey = req.query.apikey;
     const asu = await getRandom()
   const asi = asu.replace('undefined','')
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Input Parameter teks & apikey`
-    });
-        if(!apikey) return res.json(loghandler.notparam)
+    if(!query) return res.json(misparam('teks'))
+    if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
 const splitText = query.replace(/(\S+\s*){1,9}/g, '$&\n')
 const fixHeight = splitText.split('\n').slice(0, 31).join('\n')
@@ -2024,11 +1999,8 @@ spawn('convert', [
 router.get('/foliokanan', async(req, res) => {
     const query = req.query.teks;
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Input Parameter teks & apikey`
-    });
-        if(!apikey) return res.json(loghandler.notparam)
+    if(!query) return res.json(misparam('teks'))
+    if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
 const splitText = query.replace(/(\S+\s*){1,13}/g, '$&\n')
 const fixHeight = splitText.split('\n').slice(0, 38).join('\n')
@@ -2057,11 +2029,8 @@ spawn('convert', [
 router.get('/foliokiri', async(req, res) => {
     const query = req.query.teks;
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Input Parameter teks & apikey`
-    });
-        if(!apikey) return res.json(loghandler.notparam)
+    if(!query) return res.json(misparam('teks'))
+    if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
 const splitText = query.replace(/(\S+\s*){1,13}/g, '$&\n')
 const fixHeight = splitText.split('\n').slice(0, 38).join('\n')
@@ -2087,32 +2056,10 @@ spawn('convert', [
     fs.unlinkSync(`./media/nulis/sfoliokiri.jpg`)
 })
 })
-router.get('/asupan', async(req, res) => {
-    const query = req.query.query;
-    const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Masukkan parameter dengan lengkap!`
-    });
-        if(!apikey) return res.json(loghandler.notparam)
-    if(apikey != apii) return res.json(loghandler.invalidKey)
-    skrep.asupantiktok(query).then(resu => {
-        res.status(200).send({status: 200, creator: 'Fajar Ihsana', username: resu.username, data: { caption: resu.media.caption, likes: resu.media.likes, comments: resu.media.comments, share: resu.media.share, videourl: resu.media.videourl}});
-    }).catch(error => {
-        console.log(error);
-        res.status(500).send({
-            status: 500,
-            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
-        })
-    });
-})
 router.get('/searchgore', async(req, res) => {
     const query = req.query.query;
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Masukkan parameter dengan lengkap!`
-    });
+if(!query) return res.json(misparam('query'))
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.searchgore(query).then(resu => {
@@ -2128,10 +2075,7 @@ router.get('/searchgore', async(req, res) => {
 router.get('/grups', async(req, res) => {
     const query = req.query.query;
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Masukkan parameter dengan lengkap!`
-    });
+if(!query) return res.json(misparam('query'))
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.carigc(query).then(resu => {
@@ -2147,10 +2091,7 @@ router.get('/grups', async(req, res) => {
 router.get('/sfiles', async(req, res) => {
     const query = req.query.query;
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Masukkan parameter dengan lengkap!`
-    });
+if(!query) return res.json(misparam('query'))
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.sfilesearch(query).then(resu => {
@@ -2170,10 +2111,7 @@ router.get('/sfiles', async(req, res) => {
 router.get('/sfiledown', async(req, res) => {
     const query = req.query.url;
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Masukkan parameter dengan lengkap!`
-    });
+if(!query) return res.json(misparam('link'))
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.sfiledown(query).then(resu => {
@@ -2232,10 +2170,7 @@ router.get('/zippy', async(req, res) => {
 router.get('/happymod', async(req, res) => {
     const query = req.query.query;
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Masukkan parameter dengan lengkap!`
-    });
+if(!query) return res.json(misparam('query'))
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.happymod(query).then(resu => {
@@ -2255,10 +2190,7 @@ router.get('/happymod', async(req, res) => {
 router.get('/apkmody', async(req, res) => {
     const query = req.query.query;
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Masukkan parameter dengan lengkap!`
-    });
+if(!query) return res.json(misparam('query'))
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.apkmody(query).then(resu => {
@@ -2278,10 +2210,7 @@ router.get('/apkmody', async(req, res) => {
 router.get('/happymod', async(req, res) => {
     const query = req.query.query;
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Masukkan parameter dengan lengkap!`
-    });
+if(!query) return res.json(misparam('query'))
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.happymod(query).then(resu => {
@@ -2301,10 +2230,7 @@ router.get('/happymod', async(req, res) => {
 router.get('/androidone', async(req, res) => {
     const query = req.query.query;
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Masukkan parameter dengan lengkap!`
-    });
+if(!query) return res.json(misparam('query'))
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.android1(query).then(resu => {
@@ -2324,10 +2250,7 @@ router.get('/androidone', async(req, res) => {
 router.get('/usergh', async(req, res) => {
     const query = req.query.username;
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Masukkan parameter dengan lengkap!`
-    });
+if(!query) return res.json(misparam('username'))
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.ghuser(query).then(resu => {
@@ -2347,10 +2270,7 @@ router.get('/usergh', async(req, res) => {
 router.get('/kiryu', async(req, res) => {
     const query = req.query.query;
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Masukkan parameter dengan lengkap!`
-    });
+if(!query) return res.json(misparam('query'))
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.kiryu(query).then(resu => {
@@ -2370,10 +2290,7 @@ router.get('/kiryu', async(req, res) => {
 router.get('/dewabatch', async(req, res) => {
     const query = req.query.query;
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Masukkan parameter dengan lengkap!`
-    });
+if(!query) return res.json(misparam('query'))
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.dewabatch(query).then(resu => {
@@ -2393,10 +2310,7 @@ router.get('/dewabatch', async(req, res) => {
 router.get('/wattpad', async(req, res) => {
     const query = req.query.query;
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Masukkan parameter dengan lengkap!`
-    });
+    if(!query) return res.json(misparam('query'))
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.wattpad(query).then(resu => {
@@ -2416,10 +2330,7 @@ router.get('/wattpad', async(req, res) => {
 router.get('/drakor', async(req, res) => {
     const query = req.query.query;
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Masukkan parameter dengan lengkap!`
-    });
+if(!query) return res.json(misparam('query'))
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.drakor(query).then(resu => {
@@ -2439,10 +2350,7 @@ router.get('/drakor', async(req, res) => {
 router.get('/wallpaperhd', async(req, res) => {
     const query = req.query.query;
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Masukkan parameter dengan lengkap!`
-    });
+if(!query) return res.json(misparam('query'))
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.wallpaperhd(query).then(resu => {
@@ -2462,10 +2370,7 @@ router.get('/wallpaperhd', async(req, res) => {
 router.get('/konachan', async(req, res) => {
     const query = req.query.query;
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Masukkan parameter dengan lengkap!`
-    });
+if(!query) return res.json(misparam('query'))
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.konachan(query).then(resu => {
@@ -2485,10 +2390,7 @@ router.get('/konachan', async(req, res) => {
 router.get('/wiki', async(req, res) => {
     const query = req.query.query;
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Masukkan parameter dengan lengkap!`
-    });
+if(!query) return res.json(misparam('query'))
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.wikisearch(query).then(resu => {
@@ -2508,10 +2410,7 @@ router.get('/wiki', async(req, res) => {
 router.get('/resepmasakan', async(req, res) => {
     const query = req.query.query;
     const apikey = req.query.apikey;
-    if (query === undefined || apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Masukkan parameter dengan lengkap!`
-    });
+if(!query) return res.json(misparam('query'))
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.cariresep(query).then(resu => {
@@ -2542,11 +2441,7 @@ router.get('/resepmasakan', async(req, res) => {
 router.get('/randomgore', async(req, res) => {
     const query = req.query.query;
     const apikey = req.query.apikey;
-    if (apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Input Parameter apikey`
-    });
-        if(!apikey) return res.json(loghandler.notparam)
+    if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.randomgore().then(resu => {
         res.status(200).send({status: 200, creator: 'Fajar Ihsana', data: { 
@@ -2566,11 +2461,7 @@ router.get('/randomgore', async(req, res) => {
 })
 router.get('/infogempa', async(req, res) => {
     const apikey = req.query.apikey;
-    if (apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Input Parameter apikey`
-    });
-        if(!apikey) return res.json(loghandler.notparam)
+    if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.gempa().then(resu => {
         hdata = resu.data
@@ -2594,11 +2485,7 @@ router.get('/infogempa', async(req, res) => {
 router.get('/ytplayaudio', async(req, res) => {
     const query = req.query.query
     const apikey = req.query.apikey;
-    if (apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Input Parameter apikey`
-    });
-        if(!apikey) return res.json(loghandler.notparam)
+    if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     yts(query).then(resu => {
         yta(resu.all[0].url).then(data => {
@@ -2615,11 +2502,7 @@ router.get('/ytplayaudio', async(req, res) => {
 router.get('/ytmp3', async(req, res) => {
     const url = req.query.url
     const apikey = req.query.apikey;
-    if (apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Input Parameter apikey`
-    });
-        if(!apikey) return res.json(loghandler.notparam)
+    if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     yta(url).then(data => {
       res.send(data)
@@ -2634,11 +2517,7 @@ router.get('/ytmp3', async(req, res) => {
 router.get('/ytmp4', async(req, res) => {
     const url = req.query.url
     const apikey = req.query.apikey;
-    if (apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Input Parameter apikey`
-    });
-        if(!apikey) return res.json(loghandler.notparam)
+    if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     ytv(url).then(data => {
       res.send(data)
@@ -2653,11 +2532,7 @@ router.get('/ytmp4', async(req, res) => {
 router.get('/tiktok', async(req, res) => {
     const url = req.query.url
     const apikey = req.query.apikey;
-    if (apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Input Parameter apikey`
-    });
-        if(!apikey) return res.json(loghandler.notparam)
+    if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.ttdl(url).then(data => {
       res.send(data)
@@ -2672,11 +2547,7 @@ router.get('/tiktok', async(req, res) => {
 router.get('/igdl', async(req, res) => {
     const url = req.query.url
     const apikey = req.query.apikey;
-    if (apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Input Parameter apikey`
-    });
-        if(!apikey) return res.json(loghandler.notparam)
+    if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.igdown(url).then(data => {
       res.send(data)
@@ -2691,11 +2562,7 @@ router.get('/igdl', async(req, res) => {
 router.get('/twitter', async(req, res) => {
     const query = req.query.url
     const apikey = req.query.apikey;
-    if (apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Input Parameter apikey`
-    });
-        if(!apikey) return res.json(loghandler.notparam)
+    if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.twitter(url).then(data => {
       res.send(data)
@@ -2710,11 +2577,7 @@ router.get('/twitter', async(req, res) => {
 router.get('/igstalk', async(req, res) => {
     const query = req.query.username
     const apikey = req.query.apikey;
-    if (apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Input Parameter apikey`
-    });
-        if(!apikey) return res.json(loghandler.notparam)
+    if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.igstalk(query).then(data => {
       res.send(data)
@@ -2733,11 +2596,7 @@ router.get('/canvas/wasted', async(req, res) => {
   const img = req.query.url
   const asu = await getRandom()
   const asi = asu.replace('undefined','')
-    if (apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Input Parameter apikey`
-    });
-        if(!apikey) return res.json(loghandler.notparam)
+    if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
   if(!img) return res.json(mess.noimg)
   if(!isUrl(img)) return res.json(mess.url)
