@@ -2730,7 +2730,7 @@ router.get('/igstalk', async(req, res) => {
 //canvas
 router.get('/canvas/wasted', async(req, res) => {
   const apikey = req.query.apikey
-  const img = req.query.img
+  const img = req.query.url
   const asu = await getRandom()
   const asi = asu.replace('undefined','')
     if (apikey === undefined) return res.status(404).send({
@@ -2746,28 +2746,6 @@ router.get('/canvas/wasted', async(req, res) => {
     await res.sendFile(`/app/media/wasted_${asi}.png`)
     await sleep(3000)
 await fs.unlinkSync(`./media/wasted_${asi}.png`)
-  })
-  .catch(error => {
-    res.json(mess.error)
-  })
-})
-router.get('/canvas/triggered', async(req, res) => {
-  const apikey = req.query.apikey
-  const img = req.query.url
-  const {MemeCanvas} = require('canvacord')
-  const memegen = new MemeCanvas();
-    if (apikey === undefined) return res.status(404).send({
-        status: 404,
-        message: `Input Parameter apikey`
-    });
-        if(!apikey) return res.json(loghandler.notparam)
-    if(apikey != apii) return res.json(loghandler.invalidKey)
-  if(!img) return res.json(misparam(url))
-  if(!isUrl(img)) return res.json(mess.url)
-  memegen.trigger(img).then(async data => {
-    await fs.writeFileSync(`./media/trigger_${asi}.gif`)
-    await res.sendFile(`/app/media/trigger_${asi}.gif`)
-  await fs.unlinkSync(`./media/trigger_${asi}.gif`)
   })
   .catch(error => {
     res.json(mess.error)
