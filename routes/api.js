@@ -325,7 +325,7 @@ router.get('/remove', (req, res, next) => {
     }
 })
 
-router.get('/tiktod', async (req, res, next) => {
+router.get('/tiktok', async (req, res, next) => {
     const apikey = req.query.apikey,
         url = req.query.url
 
@@ -348,7 +348,7 @@ router.get('/tiktod', async (req, res, next) => {
          })
 })
 
-router.get('/tiktod/stalk', async (req, res, next) => {
+router.get('/tiktok/stalk', async (req, res, next) => {
     const apikey = req.query.apikey,
         username = req.query.username
 
@@ -595,19 +595,13 @@ router.get('/textmaker', async (req, res, next) => {
                             fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
                                 .then(response => response.json())
                                 .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
+                                  getBuffer(data.data.url).then(async resu => {
+                              fs.writeFileSync(`./media/google_${asi}.png`, resu)
+                              res.sendFile(`/app/media/google_${asi}.png`)
+                              await sleep(3000)
+                              fs.unlinkSync(`./media/google_${asi}.png`)
+                              })
+                            })
                         })
                     }
                 }) 
@@ -622,7 +616,8 @@ router.get('/textmaker/game', async (req, res, next) => {
              text2 = req.query.text2,
              text3 = req.query.text3,
              apikey = req.query.apikey;
-        
+        const asu = await getRandom()
+        const asi = asu.replace('undefined','')
   if(!apikey) return res.json(loghandler.notparam)
   if(apikey != apii) return res.json(loghandler.invalidKey)
         if (!theme) return res.json(loghandler.nottheme)
@@ -643,23 +638,16 @@ router.get('/textmaker/game', async (req, res, next) => {
                         $ = cheerio.load(b)
                         $(".thumbnail").find("img").each(function() {
                             h = $(this).attr("src")
-                            var result = "https://photooxy.com/"+h
                             fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
                                 .then(response => response.json())
                                 .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
+                                  getBuffer(data.data.url).then(async resu => {
+                              fs.writeFileSync(`./media/pubg_${asi}.png`, resu)
+                              res.sendFile(`/app/media/pubg_${asi}.png`)
+                              await sleep(3000)
+                              fs.unlinkSync(`./media/pubg_${asi}.png`)
+                              })
+                            })
                         })
                     }
                 })
@@ -684,19 +672,13 @@ router.get('/textmaker/game', async (req, res, next) => {
                             fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
                                 .then(response => response.json())
                                 .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
+                                  getBuffer(data.data.url).then(async resu => {
+                              fs.writeFileSync(`./media/battlefield_${asi}.png`, resu)
+                              res.sendFile(`/app/media/battlefield_${asi}.png`)
+                              await sleep(3000)
+                              fs.unlinkSync(`./media/battlefield_${asi}.png`)
+                              })
+                            })
                         })
                     }
                 }) 
@@ -711,7 +693,8 @@ router.get('/textmaker/senja', async (req, res, next) => {
              text2 = req.query.text2,
              text3 = req.query.text3,
              apikey = req.query.apikey;
-        
+        const asu = await getRandom()
+        const asi = asu.replace('undefined','')
   if(!apikey) return res.json(loghandler.notparam)
   if(apikey != apii) return res.json(loghandler.invalidKey)
         if (!theme) return res.json(loghandler.nottheme)
@@ -735,19 +718,13 @@ router.get('/textmaker/senja', async (req, res, next) => {
                             fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
                                 .then(response => response.json())
                                 .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
+                                  getBuffer(data.data.url).then(async resu => {
+                              fs.writeFileSync(`./media/cup_${asi}.png`, resu)
+                              res.sendFile(`/app/media/cup_${asi}.png`)
+                              await sleep(3000)
+                              fs.unlinkSync(`./media/cup_${asi}.png`)
+                              })
+                            })
                         })
                     }
                 })
@@ -771,19 +748,13 @@ router.get('/textmaker/senja', async (req, res, next) => {
                             fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
                                 .then(response => response.json())
                                 .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
+                                  getBuffer(data.data.url).then(async resu => {
+                              fs.writeFileSync(`./media/cup2_${asi}.png`, resu)
+                              res.sendFile(`/app/media/cup2_${asi}.png`)
+                              await sleep(3000)
+                              fs.unlinkSync(`./media/cup2_${asi}.png`)
+                              })
+                            })
                         })
                     }
                 }) 
@@ -2491,6 +2462,7 @@ router.get('/ytplayaudio', async(req, res) => {
     const apikey = req.query.apikey;
     if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
+    if(!query) return res.json(misparam('query'))
     yts(query).then(resu => {
         yta(resu.all[0].url).then(data => {
           res.send(data)
@@ -2508,7 +2480,26 @@ router.get('/ytmp3', async(req, res) => {
     const apikey = req.query.apikey;
     if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
+    if(!url) return res.json(misparam('url'))
+    if(!isUrl(url)) return res.json(mess.url)
     yta(url).then(data => {
+      res.send(data)
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
+        })
+    });
+})
+router.get('/soundcloud', async(req, res) => {
+    const url = req.query.url
+    const apikey = req.query.apikey;
+    if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+    if(!url) return res.json(misparam('url'))
+    if(!isUrl(url)) return res.json(mess.url)
+    skrep.soundcloud(url).then(data => {
       res.send(data)
     }).catch(error => {
         console.log(error);
@@ -2523,6 +2514,8 @@ router.get('/ytmp4', async(req, res) => {
     const apikey = req.query.apikey;
     if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
+    if(!url) return res.json(misparam('url'))
+    if(!isUrl(url)) return res.json(mess.url)
     ytv(url).then(data => {
       res.send(data)
     }).catch(error => {
@@ -2533,11 +2526,13 @@ router.get('/ytmp4', async(req, res) => {
         })
     });
 })
-router.get('/tiktok', async(req, res) => {
+router.get('/tiktokv2', async(req, res) => {
     const url = req.query.url
     const apikey = req.query.apikey;
     if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
+    if(!url) return res.json(misparam('url'))
+    if(!isUrl(url)) return res.json(mess.url)
     skrep.ttdl(url).then(data => {
       res.send(data)
     }).catch(error => {
@@ -2553,6 +2548,8 @@ router.get('/igdl', async(req, res) => {
     const apikey = req.query.apikey;
     if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
+    if(!url) return res.json(misparam('url'))
+    if(!isUrl(url)) return res.json(mess.url)
     skrep.igdown(url).then(data => {
       res.send(data)
     }).catch(error => {
@@ -2564,10 +2561,12 @@ router.get('/igdl', async(req, res) => {
     });
 })
 router.get('/twitter', async(req, res) => {
-    const query = req.query.url
+    const url = req.query.url
     const apikey = req.query.apikey;
     if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
+    if(!url) return res.json(misparam('url'))
+    if(!isUrl(url)) return res.json(mess.url)
     skrep.twitter(url).then(data => {
       res.send(data)
     }).catch(error => {
@@ -2583,6 +2582,7 @@ router.get('/igstalk', async(req, res) => {
     const apikey = req.query.apikey;
     if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
+    if(!query) return res.json(misparam('username'))
     skrep.igstalk(query).then(data => {
       res.send(data)
     }).catch(error => {
