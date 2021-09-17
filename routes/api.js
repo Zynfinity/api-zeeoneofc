@@ -1950,6 +1950,8 @@ router.get('/infohoax', async(req, res) => {
 router.get('/bukukiri', async(req, res) => {
     const query = req.query.teks;
     const apikey = req.query.apikey;
+    const asu = await getRandom()
+    const asi = asu.replace('undefined','')
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
         message: `Input Parameter teks & apikey`
@@ -1971,16 +1973,20 @@ spawn('convert', [
     '-annotate',
     '+140+153',
     fixHeight,
-    './media/nulis/setelahkiri.jpg'
+    `./media/nulis/setelahkiri_${asi}.jpg`
 ])
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
-    res.sendFile('/app/media/nulis/setelahkiri.jpg')
+    res.sendFile(`/app/media/nulis/setelahkiri_${asi}.jpg`).then({
+      fs.unlinkSync(`media/nulis/setelahkiri_${asi}.jpg`)
+      })
 })
 })
 router.get('/bukukanan', async(req, res) => {
     const query = req.query.teks;
     const apikey = req.query.apikey;
+    const asu = await getRandom()
+  const asi = asu.replace('undefined','')
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
         message: `Input Parameter teks & apikey`
@@ -2002,11 +2008,11 @@ spawn('convert', [
     '-annotate',
     '+128+129',
     fixHeight,
-    './media/nulis/setelahkanan.jpg'
+    `./media/nulis/setelahkanan_${asi}.jpg`
 ])
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
-    res.sendFile('/app/media/nulis/setelahkanan.jpg')
+    res.sendFile(`/app/media/nulis/setelahkanan_${asi}.jpg`)
 })
 })
 
