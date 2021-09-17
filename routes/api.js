@@ -67,6 +67,9 @@ const mess = {
 const getRandom = (ext) => {
   return `${Math.floor(Math.random() * 10000)}${ext}`
 }
+const sleep = async (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 loghandler = {
     notparam: {
         status: false,
@@ -2835,7 +2838,8 @@ router.get('/canvas/goodbye', async(req, res) => {
     .setBackground(bg)
     .toAttachment();
     await fs.writeFileSync(`./media/goodbye_${asi}.png`,image.toBuffer())
-  res.sendFile(`/app/media/goodbye_${asi}.png`)
+    await res.sendFile(`/app/media/goodbye_${asi}.png`)
+    await sleep(3000)
     await fs.unlinkSync(`./media/goodbye_${asi}.png`)
   }catch{
     return res.json(mess.error)
