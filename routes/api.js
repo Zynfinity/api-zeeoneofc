@@ -499,37 +499,6 @@ router.get('/base', async (req, res, next) => {
         res.json(loghandler.error)
       }
 })
-
-router.get('/nulis', async (req, res, next) => {
-  var text = req.query.text,
-     apikey = req.query.apikey;
-  if(!apikey) return res.json(loghandler.notparam)
-     if(apikey != apii) return res.json(loghandler.invalidKey)
-   if(!text) return res.json(loghandler.nottext)
-    Nulis(text)
-     .then(hasil => {
-      fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${hasil}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
-            })
-           .catch(err => {
-      res.json(loghandler.error)
-       })
-})
-
 router.get('/textmaker', async (req, res, next) => {
         var theme = req.query.theme,
              text = req.query.text,
@@ -638,6 +607,7 @@ router.get('/textmaker/game', async (req, res, next) => {
                         $ = cheerio.load(b)
                         $(".thumbnail").find("img").each(function() {
                             h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
                             fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
                                 .then(response => response.json())
                                 .then(data => {
@@ -881,19 +851,13 @@ router.get('/textmaker/metallic', async (req, res, next) => {
                             fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
                                 .then(response => response.json())
                                 .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
+                                  getBuffer(data.data.url).then(async resu => {
+                              fs.writeFileSync(`./media/neon_${asi}.png`, resu)
+                              res.sendFile(`/app/media/neon_${asi}.png`)
+                              await sleep(3000)
+                              fs.unlinkSync(`./media/neon_${asi}.png`)
+                              })
+                            })
                         })
                     }
                 })
@@ -917,19 +881,13 @@ router.get('/textmaker/metallic', async (req, res, next) => {
                             fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
                                 .then(response => response.json())
                                 .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
+                                  getBuffer(data.data.url).then(async resu => {
+                              fs.writeFileSync(`./media/glow_${asi}.png`, resu)
+                              res.sendFile(`/app/media/glow_${asi}.png`)
+                              await sleep(3000)
+                              fs.unlinkSync(`./media/glow_${asi}.png`)
+                              })
+                            })
                         })
                     }
                 }) 
@@ -968,19 +926,13 @@ router.get('/textmaker/alam', async (req, res, next) => {
                             fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
                                 .then(response => response.json())
                                 .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
+                                  getBuffer(data.data.url).then(async resu => {
+                              fs.writeFileSync(`./media/summer_${asi}.png`, resu)
+                              res.sendFile(`/app/media/summer_${asi}.png`)
+                              await sleep(3000)
+                              fs.unlinkSync(`./media/summer_${asi}.png`)
+                              })
+                            })
                         })
                     }
                 })
@@ -1004,19 +956,13 @@ router.get('/textmaker/alam', async (req, res, next) => {
                             fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
                                 .then(response => response.json())
                                 .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
+                                  getBuffer(data.data.url).then(async resu => {
+                              fs.writeFileSync(`./media/flower_${asi}.png`, resu)
+                              res.sendFile(`/app/media/flowe_${asi}.png`)
+                              await sleep(3000)
+                              fs.unlinkSync(`./media/flower_${asi}.png`)
+                              })
+                            })
                         })
                     }
                 }) 
