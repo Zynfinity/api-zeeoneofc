@@ -2751,7 +2751,7 @@ router.get('/canvas/welcome', async(req, res) => {
   if(!apikey) return res.json(loghandler.notparam)
   if(apikey != apii) return res.json(loghandler.invalidKey)
   try{
-  const imagee = await new dcanvas.Welcome()
+  const image = await new dcanvas.Welcome()
     .setUsername(nama)
     .setDiscriminator(asi)
     .setMemberCount(mem)
@@ -2789,7 +2789,7 @@ router.get('/canvas/goodbye', async(req, res) => {
   if(!apikey) return res.json(loghandler.notparam)
   if(apikey != apii) return res.json(loghandler.invalidKey)
   try{
-  const imagee = await new dcanvas.Goodbye()
+  const image = await new dcanvas.Goodbye()
     .setUsername(nama)
     .setDiscriminator(asi)
     .setMemberCount(mem)
