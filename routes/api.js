@@ -67,8 +67,6 @@ const mess = {
 const getRandom = (ext) => {
   return `${Math.floor(Math.random() * 10000)}${ext}`
 }
-var asu = getRandom()
-var asi = asu.replace('undefined','')
 loghandler = {
     notparam: {
         status: false,
@@ -2718,6 +2716,8 @@ router.get('/igstalk', async(req, res) => {
 router.get('/canvas/wasted', async(req, res) => {
   const apikey = req.query.apikey
   const img = req.query.img
+  const asu = await getRandom()
+  const asi = asu.replace('undefined','')
     if (apikey === undefined) return res.status(404).send({
         status: 404,
         message: `Input Parameter apikey`
@@ -2766,6 +2766,8 @@ router.get('/canvas/welcome', async(req, res) => {
   const gname = req.query.groupname
   const bg = req.query.bgurl
   const apikey = req.query.apikey
+  const asu = await getRandom()
+  const asi = asu.replace('undefined','')
   if(!nama) return res.json(misparam('username'))
   if(!mem) return res.json(misparam('memcount'))
   if(!avatar) return res.json(misparam('ppurl'))
@@ -2802,6 +2804,8 @@ router.get('/canvas/goodbye', async(req, res) => {
   const gname = req.query.groupname
   const bg = req.query.bgurl
   const apikey = req.query.apikey
+  const asu = await getRandom()
+  const asi = asu.replace('undefined','')
   if(!nama) return res.json(misparam('username'))
   if(!mem) return res.json(misparam('memcount'))
   if(!avatar) return res.json(misparam('ppurl'))
