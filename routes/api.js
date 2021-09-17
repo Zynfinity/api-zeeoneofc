@@ -2717,7 +2717,7 @@ router.get('/igstalk', async(req, res) => {
 })
 
 //canvas
-router.get('/canvas/wasted','/canvas/wanted' async(req, res) => {
+router.get('/canvas/wasted', async(req, res) => {
   const apikey = req.query.apikey
   const img = req.query.img
     if (apikey === undefined) return res.status(404).send({
