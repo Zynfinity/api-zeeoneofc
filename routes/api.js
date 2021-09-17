@@ -561,7 +561,7 @@ router.get('/textmaker', async (req, res, next) => {
                             h = $(this).attr("src")
                             var result = "https://photooxy.com/"+h
                             getBuffer(result).then(async data => {
-                              fs.writeFileSync(`./media/glitch_${asi}.png`)
+                              fs.writeFileSync(`./media/glitch_${asi}.png`, data)
                               res.sendFile(`/app/media/glitch_${asi}.png`)
                               await sleep(3000)
                               fs.unlinkSync(`./media/glitch_${asi}.png`)
