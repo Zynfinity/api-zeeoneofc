@@ -560,11 +560,15 @@ router.get('/textmaker', async (req, res, next) => {
                         $(".thumbnail").find("img").each(function() {
                             h = $(this).attr("src")
                             var result = "https://photooxy.com/"+h
-                            getBuffer(result).then(async data => {
-                              fs.writeFileSync(`./media/glitch_${asi}.png`, data)
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                  getBuffer(data.data.url).then(resu => {
+                              fs.writeFileSync(`./media/glitch_${asi}.png`, resu)
                               res.sendFile(`/app/media/glitch_${asi}.png`)
                               await sleep(3000)
                               fs.unlinkSync(`./media/glitch_${asi}.png`)
+                              })
                             })
                         })
                     }
