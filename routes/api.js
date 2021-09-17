@@ -1835,8 +1835,9 @@ router.get('/ptl', async(req, res) => {
     if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
         rand = ptl[Math.floor(Math.random() * ptl.length)]
-        getBuffer(rand).then(data => {
-        fs.writeFileSync('./media/ptl.mp4', data)
+        getBuffer(rand).then(async data => {
+        await fs.writeFileSync('./media/ptl.mp4', data)
+        await sleep(3000)
         res.sendFile('/app/media/ptl.mp4')
     }).catch(error => {
         console.log(error);
