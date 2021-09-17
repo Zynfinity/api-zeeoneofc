@@ -67,9 +67,8 @@ const mess = {
 const getRandom = (ext) => {
   return `${Math.floor(Math.random() * 10000)}${ext}`
 }
-getRandom().then(res => {
+var asu = getRandom()
 var asi = asu.replace('undefined','')
-})
 loghandler = {
     notparam: {
         status: false,
