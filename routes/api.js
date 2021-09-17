@@ -2788,7 +2788,7 @@ router.get('/canvas/goodbye', async(req, res) => {
   if(!bg) return res.json(misparam('bgurl'))
   if(!apikey) return res.json(loghandler.notparam)
   if(apikey != apii) return res.json(loghandler.invalidKey)
-  try{
+  //try{
   const image = await new dcanvas.Goodbye()
     .setUsername(nama)
     .setDiscriminator(asi)
@@ -2806,9 +2806,9 @@ router.get('/canvas/goodbye', async(req, res) => {
     fs.writeFileSync(`./media/goodbye_${asi}.png`,image.toBuffer())
 	await res.sendFile(`/app/media/goodbye_${asi}.png`)
     fs.unlinkSync(`./media/welcome_${asi}.png`)
-  }catch{
+  /*}catch{
     return res.json(mess.error)
-  }
+  }*/
 })
 
 module.exports = router
