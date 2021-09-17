@@ -2768,7 +2768,7 @@ router.get('/canvas/welcome', async(req, res) => {
     fs.writeFileSync(`./media/welcome_${asi}.png`,image.toBuffer())
 	  await res.sendFile(`/app/media/welcome_${asi}.png`)
     fs.unlinkSync(`./media/welcome_${asi}.png`)
-  }catch(error) => {
+  }catch{
     return res.json(mess.error)
   }
 })
@@ -2806,7 +2806,7 @@ router.get('/canvas/goodbye', async(req, res) => {
     fs.writeFileSync(`./media/goodbye_${asi}.png`,image.toBuffer())
 	await res.sendFile(`/app/media/goodbye_${asi}.png`)
     fs.unlinkSync(`./media/welcome_${asi}.png`)
-  }catch(error) => {
+  }catch{
     return res.json(mess.error)
   }
 })
