@@ -827,7 +827,8 @@ router.get('/textmaker/metallic', async (req, res, next) => {
              text2 = req.query.text2,
              text3 = req.query.text3,
              apikey = req.query.apikey;
-        
+        const asu = await getRandom()
+        const asi = asu.replace('undefined','')
   if(!apikey) return res.json(loghandler.notparam)
   if(apikey != apii) return res.json(loghandler.invalidKey)
         if (!theme) return res.json(loghandler.nottheme)
@@ -902,7 +903,8 @@ router.get('/textmaker/alam', async (req, res, next) => {
              text2 = req.query.text2,
              text3 = req.query.text3,
              apikey = req.query.apikey;
-        
+        const asu = await getRandom()
+        const asi = asu.replace('undefined','')
   if(!apikey) return res.json(loghandler.notparam)
   if(apikey != apii) return res.json(loghandler.invalidKey)
         if (!theme) return res.json(loghandler.nottheme)
