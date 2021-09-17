@@ -1979,7 +1979,7 @@ spawn('convert', [
     `./media/nulis/setelahkiri_${asi}.jpg`
 ])
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
-.on('exit', () => {
+.on('exit', async() => {
     res.sendFile(`/app/media/nulis/setelahkiri_${asi}.jpg`)
     await sleep(3000)
       fs.unlinkSync(`media/nulis/setelahkiri_${asi}.jpg`)
@@ -2014,7 +2014,7 @@ spawn('convert', [
     `./media/nulis/setelahkanan_${asi}.jpg`
 ])
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
-.on('exit', () => {
+.on('exit', async() => {
     res.sendFile(`/app/media/nulis/setelahkanan_${asi}.jpg`)
     await sleep(3000)
     fs.unlinkSync(`./media/nulis/setelahkanan_${asi}.jpg`)
@@ -2048,7 +2048,7 @@ spawn('convert', [
     './media/nulis/sfoliokanan.jpg'
 ])
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
-.on('exit', () => {
+.on('exit', async() => {
     res.sendFile('/app/media/nulis/sfoliokanan.jpg')
     await sleep(3000)
     fs.unlinkSync(`./media/nulis/sfoliokanan.jpg`)
@@ -2081,7 +2081,7 @@ spawn('convert', [
     './media/nulis/sfoliokiri.jpg'
 ])
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
-.on('exit', () => {
+.on('exit', async() => {
     res.sendFile('/app/media/nulis/sfoliokiri.jpg')
     await sleep(3000)
     fs.unlinkSync(`./media/nulis/sfoliokiri.jpg`)
