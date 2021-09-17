@@ -2792,7 +2792,7 @@ router.get('/canvas/welcome', async(req, res) => {
     .toAttachment();
     await fs.writeFileSync(`./media/welcome_${asi}.png`,image.toBuffer())
     await res.sendFile(`/app/media/welcome_${asi}.png`)
-    fs.unlinkSync(`./media/welcome_${asi}.png`)
+    //fs.unlinkSync(`./media/welcome_${asi}.png`)
   }catch{
     return res.json(mess.error)
   }
