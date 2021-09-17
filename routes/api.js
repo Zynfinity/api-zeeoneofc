@@ -1980,9 +1980,9 @@ spawn('convert', [
 ])
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
-    res.sendFile(`/app/media/nulis/setelahkiri_${asi}.jpg`).then(o => {
+    res.sendFile(`/app/media/nulis/setelahkiri_${asi}.jpg`)
+    await sleep(3000)
       fs.unlinkSync(`media/nulis/setelahkiri_${asi}.jpg`)
-      })
 })
 })
 router.get('/bukukanan', async(req, res) => {
@@ -2016,6 +2016,8 @@ spawn('convert', [
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
     res.sendFile(`/app/media/nulis/setelahkanan_${asi}.jpg`)
+    await sleep(3000)
+    fs.unlinkSync(`./media/nulis/setelahkanan_${asi}.jpg`)
 })
 })
 
@@ -2048,6 +2050,8 @@ spawn('convert', [
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
     res.sendFile('/app/media/nulis/sfoliokanan.jpg')
+    await sleep(3000)
+    fs.unlinkSync(`./media/nulis/sfoliokanan.jpg`)
 })
 })
 router.get('/foliokiri', async(req, res) => {
@@ -2079,6 +2083,8 @@ spawn('convert', [
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
     res.sendFile('/app/media/nulis/sfoliokiri.jpg')
+    await sleep(3000)
+    fs.unlinkSync(`./media/nulis/sfoliokiri.jpg`)
 })
 })
 router.get('/asupan', async(req, res) => {
@@ -2738,6 +2744,7 @@ router.get('/canvas/wasted', async(req, res) => {
   canvac.Canvas.wasted(img).then(async data => {
     await canvac.write(data, `./media/wasted_${asi}.png`)
     await res.sendFile(`/app/media/wasted_${asi}.png`)
+    await sleep(3000)
 await fs.unlinkSync(`./media/wasted_${asi}.png`)
   })
   .catch(error => {
@@ -2801,6 +2808,7 @@ router.get('/canvas/welcome', async(req, res) => {
     .toAttachment();
     await fs.writeFileSync(`./media/welcome_${asi}.png`,image.toBuffer())
     await res.sendFile(`/app/media/welcome_${asi}.png`)
+    await sleep(3000)
     await fs.unlinkSync(`./media/welcome_${asi}.png`)
   }catch{
     return res.json(mess.error)
