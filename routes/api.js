@@ -1832,13 +1832,16 @@ const getBuffer = async (url, options) => {
 }
 router.get('/ptl', async(req, res) => {
     const apikey = req.query.apikey;
+    const asu = await getRandom()
+    const asi = asu.replace('undefined','')
     if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
         rand = ptl[Math.floor(Math.random() * ptl.length)]
         getBuffer(rand).then(async data => {
-        await fs.writeFileSync('./media/ptl.mp4', data)
+        await fs.writeFileSync(`./media/ptl_${asi}.mp4`, data)
+        res.sendFile(`/app/media/ptl_${asi}.mp4`)
         await sleep(3000)
-        res.sendFile('/app/media/ptl.mp4')
+        fs.unlinkSync(`./media/ptl_${asi}.mp4`)
     }).catch(error => {
         console.log(error);
         res.status(500).send({status: 500, message: 'Sesuatu yang anda cari tidak ditemukan/error!'});
