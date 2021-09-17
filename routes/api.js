@@ -2729,7 +2729,7 @@ router.get('/canvas/wasted', async(req, res) => {
   canvac.Canvas.wasted(img).then(async data => {
     await canvac.write(data, `./media/wasted_${asi}.png`)
     await res.sendFile(`/app/media/wasted_${asi}.png`)
-fs.unlinkSync(`./media/wasted_${asi}.png`)
+await fs.unlinkSync(`./media/wasted_${asi}.png`)
   })
   .catch(error => {
     res.json(mess.error)
@@ -2751,7 +2751,7 @@ router.get('/canvas/triggered', async(req, res) => {
   memegen.trigger(img).then(async data => {
     await fs.writeFileSync(`./media/trigger_${asi}.gif`)
     await res.sendFile(`/app/media/trigger_${asi}.gif`)
-  fs.unlinkSync(`./media/trigger_${asi}.gif`)
+  await fs.unlinkSync(`./media/trigger_${asi}.gif`)
   })
   .catch(error => {
     res.json(mess.error)
@@ -2792,7 +2792,7 @@ router.get('/canvas/welcome', async(req, res) => {
     .toAttachment();
     await fs.writeFileSync(`./media/welcome_${asi}.png`,image.toBuffer())
     await res.sendFile(`/app/media/welcome_${asi}.png`)
-    //fs.unlinkSync(`./media/welcome_${asi}.png`)
+    await fs.unlinkSync(`./media/welcome_${asi}.png`)
   }catch{
     return res.json(mess.error)
   }
@@ -2830,7 +2830,7 @@ router.get('/canvas/goodbye', async(req, res) => {
     .toAttachment();
     await fs.writeFileSync(`./media/goodbye_${asi}.png`,image.toBuffer())
   await res.sendFile(`/app/media/goodbye_${asi}.png`)
-    fs.unlinkSync(`./media/goodbye_${asi}.png`)
+    await fs.unlinkSync(`./media/goodbye_${asi}.png`)
   }catch{
     return res.json(mess.error)
   }
