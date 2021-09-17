@@ -2740,29 +2740,75 @@ router.get('/canvas/welcome', async(req, res) => {
   const avatar = req.query.ppurl
   const gname = req.query.groupname
   const bg = req.query.bgurl
+  const apikey = req.query.apikey
+  const asu = await getRandom()
+  const asi = asu.replace('undefined','')
   if(!nama) return res.json(misparam('username'))
   if(!mem) return res.json(misparam('memcount'))
   if(!avatar) return res.json(misparam('ppurl'))
   if(!gname) return res.json(misparam('groupname'))
   if(!bg) return res.json(misparam('bgurl'))
-  const asu = await getRandom()
-  const asi = asu.replace('undefined','')
-  const image = new dcanvas.Welcome()
+  if(!apikey) return res.json(loghandler.notparam)
+  if(apikey != apii) return res.json(loghandler.invalidKey)
+  try{
+  const imagee = await new dcanvas.Welcome()
     .setUsername(nama)
-    .setDiscriminator("0001")
+    .setDiscriminator(asi)
     .setMemberCount(mem)
     .setGuildName(gname)
-    .setAvatar("https://www.site.com/avatar.jpg")
+    .setAvatar(avatar)
     .setColor("border", "#8015EA")
     .setColor("username-box", "#8015EA")
     .setColor("discriminator-box", "#8015EA")
     .setColor("message-box", "#8015EA")
     .setColor("title", "#8015EA")
     .setColor("avatar", "#8015EA")
-    .setBackground("https://site.com/background.jpg")
+    .setBackground(bg)
     .toAttachment();
-	fs.writeFileSync(`./media/welcome_${asi}.png`, image)
-	res.sendFile(`/app/media/welcome_${asi}.png`)
+    fs.writeFileSync(`./media/welcome_${asi}.png`,image.toBuffer())
+	  await res.sendFile(`/app/media/welcome_${asi}.png`)
+    fs.unlinkSync(`./media/welcome_${asi}.png`)
+  }catch(error) => {
+    return res.json(mess.error)
+  }
+})
+router.get('/canvas/goodbye', async(req, res) => {
+  const nama = req.query.username
+  const mem = req.query.memcount
+  const avatar = req.query.ppurl
+  const gname = req.query.groupname
+  const bg = req.query.bgurl
+  const apikey = req.query.apikey
+  const asu = await getRandom()
+  const asi = asu.replace('undefined','')
+  if(!nama) return res.json(misparam('username'))
+  if(!mem) return res.json(misparam('memcount'))
+  if(!avatar) return res.json(misparam('ppurl'))
+  if(!gname) return res.json(misparam('groupname'))
+  if(!bg) return res.json(misparam('bgurl'))
+  if(!apikey) return res.json(loghandler.notparam)
+  if(apikey != apii) return res.json(loghandler.invalidKey)
+  try{
+  const imagee = await new dcanvas.Goodbye()
+    .setUsername(nama)
+    .setDiscriminator(asi)
+    .setMemberCount(mem)
+    .setGuildName(gname)
+    .setAvatar(avatar)
+    .setColor("border", "#8015EA")
+    .setColor("username-box", "#8015EA")
+    .setColor("discriminator-box", "#8015EA")
+    .setColor("message-box", "#8015EA")
+    .setColor("title", "#8015EA")
+    .setColor("avatar", "#8015EA")
+    .setBackground(bg)
+    .toAttachment();
+    fs.writeFileSync(`./media/goodbye_${asi}.png`,image.toBuffer())
+	await res.sendFile(`/app/media/goodbye_${asi}.png`)
+    fs.unlinkSync(`./media/welcome_${asi}.png`)
+  }catch(error) => {
+    return res.json(mess.error)
+  }
 })
 
 module.exports = router
