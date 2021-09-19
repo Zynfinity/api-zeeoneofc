@@ -2566,6 +2566,234 @@ await fs.unlinkSync(`./media/wasted_${asi}.png`)
     res.json(mess.error)
   })
 })
+router.get('/canvas/wanted', async(req, res) => {
+  const apikey = req.query.apikey
+  const img = req.query.url
+  const asu = await getRandom()
+  const asi = asu.replace('undefined','')
+    if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+  if(!img) return res.json(mess.noimg)
+  if(!isUrl(img)) return res.json(mess.url)
+  canvac.Canvas.wanted(img).then(async data => {
+    await canvac.write(data, `./media/wanted_${asi}.png`)
+    await res.sendFile(`/app/media/wanted_${asi}.png`)
+    await sleep(3000)
+await fs.unlinkSync(`./media/wanted_${asi}.png`)
+  })
+  .catch(error => {
+    res.json(mess.error)
+  })
+})
+router.get('/canvas/rip', async(req, res) => {
+  const apikey = req.query.apikey
+  const img = req.query.url
+  const asu = await getRandom()
+  const asi = asu.replace('undefined','')
+    if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+  if(!img) return res.json(mess.noimg)
+  if(!isUrl(img)) return res.json(mess.url)
+  canvac.Canvas.rip(img).then(async data => {
+    await canvac.write(data, `./media/rip_${asi}.png`)
+    await res.sendFile(`/app/media/rip_${asi}.png`)
+    await sleep(3000)
+await fs.unlinkSync(`./media/rip_${asi}.png`)
+  })
+  .catch(error => {
+    res.json(mess.error)
+  })
+})
+router.get('/canvas/sepia', async(req, res) => {
+  const apikey = req.query.apikey
+  const img = req.query.url
+  const asu = await getRandom()
+  const asi = asu.replace('undefined','')
+    if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+  if(!img) return res.json(mess.noimg)
+  if(!isUrl(img)) return res.json(mess.url)
+  canvac.Canvas.sepia(img).then(async data => {
+    await canvac.write(data, `./media/sepia_${asi}.png`)
+    await res.sendFile(`/app/media/sepia_${asi}.png`)
+    await sleep(3000)
+await fs.unlinkSync(`./media/sepia_${asi}.png`)
+  })
+  .catch(error => {
+    res.json(mess.error)
+  })
+})
+router.get('/canvas/shit', async(req, res) => {
+  const apikey = req.query.apikey
+  const img = req.query.url
+  const asu = await getRandom()
+  const asi = asu.replace('undefined','')
+    if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+  if(!img) return res.json(mess.noimg)
+  if(!isUrl(img)) return res.json(mess.url)
+  canvac.Canvas.shit(img).then(async data => {
+    await canvac.write(data, `./media/shit_${asi}.png`)
+    await res.sendFile(`/app/media/shit_${asi}.png`)
+    await sleep(3000)
+await fs.unlinkSync(`./media/shit_${asi}.png`)
+  })
+  .catch(error => {
+    res.json(mess.error)
+  })
+})
+router.get('/canvas/greyscale', async(req, res) => {
+  const apikey = req.query.apikey
+  const img = req.query.url
+  const asu = await getRandom()
+  const asi = asu.replace('undefined','')
+    if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+  if(!img) return res.json(mess.noimg)
+  if(!isUrl(img)) return res.json(mess.url)
+  canvac.Canvas.greyscale(img).then(async data => {
+    await canvac.write(data, `./media/greyscale_${asi}.png`)
+    await res.sendFile(`/app/media/greyscale_${asi}.png`)
+    await sleep(3000)
+await fs.unlinkSync(`./media/greyscale_${asi}.png`)
+  })
+  .catch(error => {
+    res.json(mess.error)
+  })
+})
+router.get('/canvas/beautiful', async(req, res) => {
+  const apikey = req.query.apikey
+  const img = req.query.url
+  const asu = await getRandom()
+  const asi = asu.replace('undefined','')
+    if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+  if(!img) return res.json(mess.noimg)
+  if(!isUrl(img)) return res.json(mess.url)
+  canvac.Canvas.beautiful(img).then(async data => {
+    await canvac.write(data, `./media/beautiful_${asi}.png`)
+    await res.sendFile(`/app/media/beautiful_${asi}.png`)
+    await sleep(3000)
+await fs.unlinkSync(`./media/beautiful_${asi}.png`)
+  })
+  .catch(error => {
+    res.json(mess.error)
+  })
+})
+router.get('/canvas/blur', async(req, res) => {
+  const apikey = req.query.apikey
+  const img = req.query.url
+  const asu = await getRandom()
+  const asi = asu.replace('undefined','')
+    if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+  if(!img) return res.json(mess.noimg)
+  if(!isUrl(img)) return res.json(mess.url)
+  canvac.Canvas.blur(img).then(async data => {
+    await canvac.write(data, `./media/blur_${asi}.png`)
+    await res.sendFile(`/app/media/blur_${asi}.png`)
+    await sleep(3000)
+await fs.unlinkSync(`./media/blur_${asi}.png`)
+  })
+  .catch(error => {
+    res.json(mess.error)
+  })
+})
+router.get('/canvas/invert', async(req, res) => {
+  const apikey = req.query.apikey
+  const img = req.query.url
+  const asu = await getRandom()
+  const asi = asu.replace('undefined','')
+    if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+  if(!img) return res.json(mess.noimg)
+  if(!isUrl(img)) return res.json(mess.url)
+  canvac.Canvas.invert(img).then(async data => {
+    await canvac.write(data, `./media/invert_${asi}.png`)
+    await res.sendFile(`/app/media/invert_${asi}.png`)
+    await sleep(3000)
+await fs.unlinkSync(`./media/invert_${asi}.png`)
+  })
+  .catch(error => {
+    res.json(mess.error)
+  })
+})
+router.get('/canvas/jokeOverHead', async(req, res) => {
+  const apikey = req.query.apikey
+  const img = req.query.url
+  const asu = await getRandom()
+  const asi = asu.replace('undefined','')
+    if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+  if(!img) return res.json(mess.noimg)
+  if(!isUrl(img)) return res.json(mess.url)
+  canvac.Canvas.jokeOverHead(img).then(async data => {
+    await canvac.write(data, `./media/jokeOverHead_${asi}.png`)
+    await res.sendFile(`/app/media/jokeOverHead_${asi}.png`)
+    await sleep(3000)
+await fs.unlinkSync(`./media/jokeOverHead_${asi}.png`)
+  })
+  .catch(error => {
+    res.json(mess.error)
+  })
+})
+router.get('/canvas/hitler', async(req, res) => {
+  const apikey = req.query.apikey
+  const img = req.query.url
+  const asu = await getRandom()
+  const asi = asu.replace('undefined','')
+    if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+  if(!img) return res.json(mess.noimg)
+  if(!isUrl(img)) return res.json(mess.url)
+  canvac.Canvas.hitler(img).then(async data => {
+    await canvac.write(data, `./media/hitler_${asi}.png`)
+    await res.sendFile(`/app/media/hitler_${asi}.png`)
+    await sleep(3000)
+await fs.unlinkSync(`./media/hitler_${asi}.png`)
+  })
+  .catch(error => {
+    res.json(mess.error)
+  })
+})
+router.get('/canvas/facepalm', async(req, res) => {
+  const apikey = req.query.apikey
+  const img = req.query.url
+  const asu = await getRandom()
+  const asi = asu.replace('undefined','')
+    if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+  if(!img) return res.json(mess.noimg)
+  if(!isUrl(img)) return res.json(mess.url)
+  canvac.Canvas.facepalm(img).then(async data => {
+    await canvac.write(data, `./media/facepalm_${asi}.png`)
+    await res.sendFile(`/app/media/facepalm_${asi}.png`)
+    await sleep(3000)
+await fs.unlinkSync(`./media/facepalm_${asi}.png`)
+  })
+  .catch(error => {
+    res.json(mess.error)
+  })
+})
+router.get('/canvas/circle', async(req, res) => {
+  const apikey = req.query.apikey
+  const img = req.query.url
+  const asu = await getRandom()
+  const asi = asu.replace('undefined','')
+    if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+  if(!img) return res.json(mess.noimg)
+  if(!isUrl(img)) return res.json(mess.url)
+  canvac.Canvas.circle(img).then(async data => {
+    await canvac.write(data, `./media/circle_${asi}.png`)
+    await res.sendFile(`/app/media/circle_${asi}.png`)
+    await sleep(3000)
+await fs.unlinkSync(`./media/circle_${asi}.png`)
+  })
+  .catch(error => {
+    res.json(mess.error)
+  })
+})
 
 //welcome left canvas
 router.get('/canvas/welcome', async(req, res) => {
