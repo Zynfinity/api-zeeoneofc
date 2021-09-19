@@ -2631,7 +2631,7 @@ router.get('/corona', async(req, res) => {
     if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     if(!country) return res.json(misparam('country'))
-    skrep.corona(query).then(data => {
+    skrep.corona(country).then(data => {
       res.send(data)
     }).catch(error => {
         console.log(error);
