@@ -2545,6 +2545,102 @@ router.get('/igstalk', async(req, res) => {
         })
     });
 })
+router.get('/ytsearch', async(req, res) => {
+    const query = req.query.query
+    const apikey = req.query.apikey;
+    if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+    if(!query) return res.json(misparam('query'))
+    yts(query).then(data => {
+      res.send(data.all)
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
+        })
+    });
+})
+router.get('/randomgore', async(req, res) => {
+    const apikey = req.query.apikey;
+    if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+    skrep.randomgore().then(data => {
+      res.send(data)
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
+        })
+    });
+})
+router.get('/palingmurah', async(req, res) => {
+    const query = req.query.query
+    const apikey = req.query.apikey;
+    if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+    if(!query) return res.json(misparam('query'))
+    skrep.palingmurah(query).then(data => {
+      res.send(data)
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
+        })
+    });
+})
+router.get('/mediafiredl', async(req, res) => {
+    const url = req.query.url
+    const apikey = req.query.apikey;
+    if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+    if(!url) return res.json(misparam('url'))
+    if(!isUrl(url)) return res.json(mess.url)
+    skrep.mediafire(url).then(data => {
+      res.send(data)
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
+        })
+    });
+})
+router.get('/sfiledown', async(req, res) => {
+    const url = req.query.url
+    const apikey = req.query.apikey;
+    if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+    if(!url) return res.json(misparam('url'))
+    if(!isUrl(url)) return res.json(mess.url)
+    skrep.sfiledown(url).then(data => {
+      res.send(data)
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
+        })
+    });
+})
+router.get('/corona', async(req, res) => {
+    const country = req.query.country
+    const apikey = req.query.apikey;
+    if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+    if(!country) return res.json(misparam('country'))
+    skrep.corona(query).then(data => {
+      res.send(data)
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
+        })
+    });
+})
 
 //canvas
 router.get('/canvas/wasted', async(req, res) => {
