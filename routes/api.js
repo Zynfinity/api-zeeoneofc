@@ -2035,36 +2035,6 @@ if(!query) return res.json(misparam('query'))
         })
     });
 })
-router.get('/sfiledown', async(req, res) => {
-    const query = req.query.url;
-    const apikey = req.query.apikey;
-if(!query) return res.json(misparam('link'))
-        if(!apikey) return res.json(loghandler.notparam)
-    if(apikey != apii) return res.json(loghandler.invalidKey)
-    skrep.sfiledown(query).then(resu => {
-        hdata = resu.data
-        res.status(200).send({
-            status: 200, 
-            creator: 'Fajar Ihsana', 
-            data: {
-                judul: hdata.judul,
-                size: hdata.size,
-                type: hdata.type,
-                desc: hdata.desc,
-                uploader: hdata.uploader,
-                uploaded: hdata.uploaded,
-                download_count : hdata.download_count,
-                link: hdata.link
-            }
-        });
-    }).catch(error => {
-        console.log(error);
-        res.status(500).send({
-            status: 500,
-            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
-        })
-    });
-})
 router.get('/zippy', async(req, res) => {
     const query = req.query.url;
     const apikey = req.query.apikey;
@@ -2616,6 +2586,23 @@ router.get('/sfiledown', async(req, res) => {
     if(!url) return res.json(misparam('url'))
     if(!isUrl(url)) return res.json(mess.url)
     skrep.sfiledown(url).then(data => {
+      res.send(data)
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
+        })
+    });
+})
+router.get('/seegoredl', async(req, res) => {
+    const url = req.query.url
+    const apikey = req.query.apikey;
+    if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+    if(!url) return res.json(misparam('url'))
+    if(!isUrl(url)) return res.json(mess.url)
+    skrep.goredl(url).then(data => {
       res.send(data)
     }).catch(error => {
         console.log(error);
