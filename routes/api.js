@@ -2251,11 +2251,7 @@ if(!query) return res.json(misparam('query'))
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.wallpaperhd(query).then(resu => {
-    rand = resu[Math.floor(Math.random() * resu.length)]
-        getBuffer(rand).then(data => {
-        fs.writeFileSync('./media/wall.png', data)
-        res.sendFile('/app/media/wall.png')
-    })
+      res.send(resu)
     }).catch(error => {
         console.log(error);
         res.status(500).send({
@@ -2271,11 +2267,23 @@ if(!query) return res.json(misparam('query'))
         if(!apikey) return res.json(loghandler.notparam)
     if(apikey != apii) return res.json(loghandler.invalidKey)
     skrep.konachan(query).then(resu => {
-      rand = resu[Math.floor(Math.random() * resu.length)]
-        getBuffer(rand).then(data => {
-        fs.writeFileSync('./media/konachan.png', data)
-        res.sendFile('/app/media/konachan.png')
-    })
+      res.send(resu)
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
+        })
+    });
+})
+router.get('/zerochan', async(req, res) => {
+    const query = req.query.query;
+    const apikey = req.query.apikey;
+if(!query) return res.json(misparam('query'))
+        if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+    skrep.zerochan(query).then(resu => {
+      res.send(resu)
     }).catch(error => {
         console.log(error);
         res.status(500).send({
@@ -2490,6 +2498,23 @@ router.get('/twitter', async(req, res) => {
     if(!url) return res.json(misparam('url'))
     if(!isUrl(url)) return res.json(mess.url)
     skrep.twitter(url).then(data => {
+      res.send(data)
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Sesuatu yang anda cari tidak ditemukan/error!'
+        })
+    });
+})
+router.get('/happymoddl', async(req, res) => {
+    const url = req.query.url
+    const apikey = req.query.apikey;
+    if(!apikey) return res.json(loghandler.notparam)
+    if(apikey != apii) return res.json(loghandler.invalidKey)
+    if(!url) return res.json(misparam('url'))
+    if(!isUrl(url)) return res.json(mess.url)
+    skrep.happymoddl(url).then(data => {
       res.send(data)
     }).catch(error => {
         console.log(error);
