@@ -2412,7 +2412,7 @@ router.get('/ytmp3', async(req, res) => {
     if(apikey != apii) return res.json(loghandler.invalidKey)
     if(!url) return res.json(misparam('url'))
     if(!isUrl(url)) return res.json(mess.url)
-    yta(url).then(data => {
+    yta(url.replace('shorts', 'embed')).then(data => {
       res.send(data)
     }).catch(error => {
         console.log(error);
@@ -2446,7 +2446,7 @@ router.get('/ytmp4', async(req, res) => {
     if(apikey != apii) return res.json(loghandler.invalidKey)
     if(!url) return res.json(misparam('url'))
     if(!isUrl(url)) return res.json(mess.url)
-    ytv(url).then(data => {
+    ytv(url.replace('shorts', 'embed')).then(data => {
       res.send(data)
     }).catch(error => {
         console.log(error);
