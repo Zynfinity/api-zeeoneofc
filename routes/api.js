@@ -2446,6 +2446,7 @@ router.get('/ytmp4', async(req, res) => {
     if(apikey != apii) return res.json(loghandler.invalidKey)
     if(!url) return res.json(misparam('url'))
     if(!isUrl(url)) return res.json(mess.url)
+  console.log(url.replace('shorts', 'embed'))
     ytv(url.replace('shorts', 'embed')).then(data => {
       res.send(data)
     }).catch(error => {
