@@ -347,7 +347,21 @@ router.get('/tiktok', async (req, res, next) => {
              res.json(loghandler.invalidlink)
          })
 })
+router.get('/asupantt', async (req, res, next) => {
+    const apikey = req.query.apikey,
+  if(!apikey) return res.json(loghandler.notparam)
+  if(apikey != apii) return res.json(loghandler.invalidKey)
+     if (!url) return res.json(loghandler.noturl)
 
+     skrep.randomtt()
+         .then(vid => {
+             console.log(vid)
+             res.json(vid)
+         })
+         .catch(e => {
+             res.json(loghandler.invalidlink)
+         })
+})
 router.get('/tiktok/stalk', async (req, res, next) => {
     const apikey = req.query.apikey,
         username = req.query.username
