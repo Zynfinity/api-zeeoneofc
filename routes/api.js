@@ -349,11 +349,12 @@ router.get('/tiktok', async (req, res, next) => {
 })
 router.get('/asupantt', async (req, res, next) => {
     const apikey = req.query.apikey,
+    const username = req.query.username
   if(!apikey) return res.json(loghandler.notparam)
   if(apikey != apii) return res.json(loghandler.invalidKey)
      if (!url) return res.json(loghandler.noturl)
 
-     skrep.randomtt()
+     skrep.randomtt(username)
          .then(vid => {
              console.log(vid)
              res.json(vid)
